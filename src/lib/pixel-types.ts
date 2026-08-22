@@ -6,7 +6,7 @@ import type { ProjectCategory } from "@/data/projects";
  * Every ProjectCategory value used in src/data/projects.ts must have an
  * entry here.
  */
-export interface PixelType {
+interface PixelType {
   name: string;
   className: string;
 }
@@ -18,4 +18,5 @@ export const CATEGORY_TYPE: Record<ProjectCategory, PixelType> = {
   "AI / ML": { name: "Psychic", className: "type-psychic" },
   "Computer Vision": { name: "Bug", className: "type-bug" },
   Infrastructure: { name: "Ground", className: "type-ground" },
+  "Web Development": { name: "Water", className: "type-water" },
 };

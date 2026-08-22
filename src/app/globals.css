@@ -1,9 +1,13 @@
-/* Hallmark · macrostructure: bespoke (Retro RPG World) · genre: playful
- * theme: custom (bespoke) · vibe: "GBA-era Pokémon menu screens, dark overworld, engineer's workshop"
- * paper oklch(19% 0.03 258) navy world / oklch(93% 0.025 90) cream panel
- * accent oklch(62% 0.13 142) grass-green · warm hue
+/* Hallmark · macrostructure: bespoke (Pokédex Device) · genre: playful
+ * theme: custom (bespoke) · vibe: "classic Pokédex hardware — red shell, blue lens, cream screens"
+ * paper oklch(14% 0.025 20) dark maroon world / oklch(93% 0.025 90) cream screen
+ * accent oklch(56% 0.215 26) dex-red · warm hue
  * display: Geist Sans (readable) + Press Start 2P (pixel chrome only) · body: Geist Sans
- * axes: paper=dark(navy)+light(cream panels) / display=rounded-sans+pixel-chrome / accent=warm-chromatic-green
+ * axes: paper=dark(maroon)+light(cream screens) / display=rounded-sans+pixel-chrome / accent=warm-chromatic-red
+ *
+ * The one deliberate exception to the zero-radius rule: the Pokédex hardware
+ * chrome (lens, LEDs, screws) is circular, because that's what the device is.
+ * Every content surface stays square / pixel-notched.
  */
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -62,9 +66,9 @@
 
   --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-glow-pulse: glow-pulse 2.4s ease-in-out infinite;
-  --animate-marquee: marquee 32s linear infinite;
   --animate-pixel-bob: pixel-bob 2.2s ease-in-out infinite;
   --animate-blink: pixel-blink 1s step-end infinite;
+  --animate-led-blink: led-blink 1.6s step-end infinite;
 
   @keyframes fade-up {
     from {
@@ -83,14 +87,6 @@
     }
     50% {
       opacity: 1;
-    }
-  }
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
     }
   }
   @keyframes pixel-bob {
@@ -112,69 +108,88 @@
       opacity: 0;
     }
   }
+  @keyframes led-blink {
+    0%,
+    64% {
+      opacity: 1;
+    }
+    65%,
+    100% {
+      opacity: 0.35;
+    }
+  }
 }
 
-/* ---------------------------------------------------------------
-   ARNAV'S WORLD — dark overworld + cream "game screen" panels.
-   A GBA-era Pokémon menu aesthetic: colourful but restrained, hard
-   pixel edges, no gradients, no glow, no glass.
-   --------------------------------------------------------------- */
+/* ===================================================================
+   THE POKéDEX WORLD — dark maroon overworld + red device shell +
+   cream "screen" panels. Classic Pokédex hardware: red body, blue
+   lens/screens, yellow trim, hard pixel edges elsewhere.
+   =================================================================== */
 :root {
-  /* the overworld — page background, nav, footer, hero */
-  --background: oklch(19% 0.03 258);
+  /* the overworld — page background behind/around the device */
+  --background: oklch(14% 0.025 20);
   --foreground: oklch(93% 0.02 95);
-  --card: oklch(24% 0.035 258);
+  --card: oklch(22% 0.04 20);
   --card-foreground: oklch(93% 0.02 95);
-  --popover: oklch(24% 0.035 258);
+  --popover: oklch(22% 0.04 20);
   --popover-foreground: oklch(93% 0.02 95);
 
-  --primary: oklch(62% 0.13 142);
-  --primary-foreground: oklch(17% 0.03 150);
-  --secondary: oklch(27% 0.03 258);
+  --primary: oklch(56% 0.215 26);
+  --primary-foreground: oklch(97% 0.01 90);
+  --secondary: oklch(27% 0.05 22);
   --secondary-foreground: oklch(93% 0.02 95);
-  --muted: oklch(27% 0.03 258);
-  --muted-foreground: oklch(70% 0.02 95);
-  --accent: oklch(27% 0.03 258);
-  --accent-foreground: oklch(62% 0.13 142);
+  --muted: oklch(27% 0.05 22);
+  --muted-foreground: oklch(72% 0.03 85);
+  --accent: oklch(27% 0.05 22);
+  --accent-foreground: oklch(56% 0.215 26);
   --destructive: oklch(55% 0.15 25);
 
-  --border: oklch(32% 0.03 258);
-  --input: oklch(32% 0.03 258);
-  --ring: oklch(62% 0.13 142);
+  --border: oklch(32% 0.05 22);
+  --input: oklch(32% 0.05 22);
+  --ring: oklch(56% 0.215 26);
 
-  /* "amber" name kept from the previous theme so existing utility
-     classes (text-amber, bg-amber/10, hover:border-amber, …) keep
-     working untouched — it now points at the world's primary accent. */
-  --amber: oklch(62% 0.13 142);
-  --amber-dim: oklch(62% 0.13 142 / 16%);
-  --amber-foreground: oklch(17% 0.03 150);
+  /* "amber" name kept so existing utility classes (text-amber,
+     bg-amber/10, hover:border-amber, …) keep working untouched — it
+     now points at the dex-red primary accent. */
+  --amber: oklch(56% 0.215 26);
+  --amber-dim: oklch(56% 0.215 26 / 16%);
+  --amber-foreground: oklch(97% 0.01 90);
 
-  --chart-1: oklch(62% 0.13 142);
+  --chart-1: oklch(56% 0.215 26);
   --chart-2: oklch(78% 0.13 90);
-  --chart-3: oklch(55% 0.15 25);
+  --chart-3: oklch(52% 0.125 250);
   --chart-4: oklch(45% 0.06 55);
   --chart-5: oklch(68% 0.02 250);
   --radius: 0px;
 
-  --sidebar: oklch(19% 0.03 258);
+  --sidebar: oklch(14% 0.025 20);
   --sidebar-foreground: oklch(93% 0.02 95);
-  --sidebar-primary: oklch(62% 0.13 142);
-  --sidebar-primary-foreground: oklch(17% 0.03 150);
-  --sidebar-accent: oklch(27% 0.03 258);
+  --sidebar-primary: oklch(56% 0.215 26);
+  --sidebar-primary-foreground: oklch(97% 0.01 90);
+  --sidebar-accent: oklch(27% 0.05 22);
   --sidebar-accent-foreground: oklch(93% 0.02 95);
-  --sidebar-border: oklch(32% 0.03 258);
-  --sidebar-ring: oklch(62% 0.13 142);
+  --sidebar-border: oklch(32% 0.05 22);
+  --sidebar-ring: oklch(56% 0.215 26);
 
-  /* named palette, referenced directly by pixel-* utilities below */
-  --pixel-navy: oklch(19% 0.03 258);
-  --pixel-navy-alt: oklch(24% 0.035 258);
-  --pixel-forest: oklch(28% 0.05 155);
-  --pixel-grass: oklch(62% 0.13 142);
+  /* named palette — the Pokédex hardware colours */
+  --dex-red: oklch(57% 0.21 26);
+  --dex-red-dark: oklch(45% 0.185 26);
+  --dex-red-deep: oklch(33% 0.14 24);
+  --dex-blue: oklch(52% 0.125 250);
+  --dex-blue-dark: oklch(36% 0.11 252);
+  --dex-blue-light: oklch(68% 0.115 242);
+  --dex-yellow: oklch(78% 0.13 90);
+
+  /* legacy named palette still referenced by components */
+  --pixel-navy: oklch(14% 0.025 20);
+  --pixel-navy-alt: oklch(22% 0.04 20);
+  --pixel-forest: var(--dex-blue-dark);
+  --pixel-grass: oklch(58% 0.14 150);
   --pixel-cream: oklch(93% 0.025 90);
   --pixel-cream-alt: oklch(88% 0.03 85);
   --pixel-ink: oklch(24% 0.03 55);
   --pixel-ink-dim: oklch(40% 0.04 55);
-  --pixel-brown: oklch(38% 0.05 55);
+  --pixel-brown: oklch(36% 0.06 40);
   --pixel-red: oklch(55% 0.15 25);
   --pixel-yellow: oklch(78% 0.13 90);
 }
@@ -194,15 +209,39 @@
     background: var(--amber);
     color: var(--amber-foreground);
   }
+
+  /* Custom pixel scrollbar — chunky thumb, hard edges. */
   ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--background);
+    background: color-mix(in oklch, var(--background) 88%, var(--dex-red-deep));
+    border-left: 2px solid var(--background);
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--border);
+    background: var(--dex-red-dark);
+    border: 2px solid var(--dex-red-deep);
     border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--dex-red);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--dex-red-dark)
+      color-mix(in oklch, var(--background) 88%, var(--dex-red-deep));
+  }
+  .pixel-panel ::-webkit-scrollbar-thumb {
+    background: var(--pixel-brown);
+    border-color: var(--pixel-cream-alt);
+  }
+  .pixel-panel ::-webkit-scrollbar-track {
+    background: var(--pixel-cream-alt);
+    border-left: 2px solid var(--pixel-cream-alt);
+  }
+  .pixel-panel {
+    scrollbar-color: var(--pixel-brown) var(--pixel-cream-alt);
   }
 }
 
@@ -219,24 +258,19 @@
   .font-pixel {
     letter-spacing: 0.02em;
   }
-  .bg-pixel-world {
-    background-image: repeating-linear-gradient(
-        135deg,
-        color-mix(in oklch, var(--pixel-navy) 100%, white 3%) 0 2px,
-        transparent 2px 4px
-      );
-    background-size: 100% 100%;
-  }
-  .bg-pixel-dither {
-    background-image: radial-gradient(currentColor 1px, transparent 1px);
-    background-size: 16px 16px;
-  }
-  .mask-fade-bottom {
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
-  .glow-amber {
-    box-shadow: 0 0 0 1px var(--amber-dim), 0 0 40px -8px rgba(232, 163, 61, 0.35);
-  }
+}
+
+/* Headings + nav speak the Pokédex font; body copy stays Geist for
+ * readability. Pixel glyphs run wide, so sizes are set per-component. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pixel), var(--font-mono), ui-monospace, monospace;
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
 /* ===================================================================
@@ -270,7 +304,7 @@
 .pixel-frame {
   position: relative;
   padding: 3px;
-  background: var(--pixel-brown);
+  background: var(--dex-blue-dark);
 }
 
 .pixel-frame > .pixel-frame-inner {
@@ -282,17 +316,19 @@
    =================================================================== */
 .pixel-btn {
   position: relative;
-  border: 2px solid var(--pb-border, var(--pixel-ink));
-  box-shadow: 3px 3px 0 0 var(--pb-shadow, var(--pixel-ink));
-  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2);
+  border: 2px solid var(--pb-border, var(--pixel-brown));
+  box-shadow: 3px 3px 0 0 var(--pb-shadow, var(--dex-red-deep));
+  transition:
+    transform 0.08s steps(2),
+    box-shadow 0.08s steps(2);
 }
 .pixel-btn:hover {
   transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 0 var(--pb-shadow, var(--pixel-ink));
+  box-shadow: 4px 4px 0 0 var(--pb-shadow, var(--dex-red-deep));
 }
 .pixel-btn:active {
   transform: translate(3px, 3px);
-  box-shadow: 0 0 0 0 var(--pb-shadow, var(--pixel-ink));
+  box-shadow: 0 0 0 0 var(--pb-shadow, var(--dex-red-deep));
 }
 @media (prefers-reduced-motion: reduce) {
   .pixel-btn,
@@ -305,8 +341,7 @@
 
 /* ===================================================================
    TYPE BADGES — Pokémon-style domain tags. Design language, not a
-   literal claim about the project. Six types, mapped 1:1 to the
-   existing ProjectCategory values.
+   literal claim about the project.
    =================================================================== */
 .type-badge {
   display: inline-flex;
@@ -342,6 +377,10 @@
   background: var(--pixel-brown);
   color: oklch(96% 0.01 90);
 }
+.type-water {
+  background: var(--dex-blue);
+  color: oklch(96% 0.01 90);
+}
 
 /* ===================================================================
    PIXEL PANEL — the game-screen "window" every section's content sits
@@ -349,14 +388,13 @@
    re-scopes the shared semantic tokens (--card, --foreground, …) so
    existing component classNames (bg-card, text-foreground,
    text-muted-foreground, border-border) automatically read correctly
-   against a light panel instead of the dark overworld — no per-file
-   colour-class rewrites needed.
+   against a light panel instead of the dark overworld.
    =================================================================== */
 .pixel-panel {
   position: relative;
   background: var(--pixel-cream);
   border: 3px solid var(--pixel-brown);
-  box-shadow: 5px 5px 0 0 color-mix(in oklch, var(--pixel-brown) 70%, black);
+  box-shadow: 5px 5px 0 0 color-mix(in oklch, var(--dex-red-deep) 80%, black);
 
   --card: var(--pixel-cream-alt);
   --card-foreground: var(--pixel-ink);
@@ -368,16 +406,17 @@
   --border: color-mix(in oklch, var(--pixel-brown) 55%, var(--pixel-cream) 45%);
   --secondary: var(--pixel-cream-alt);
   --secondary-foreground: var(--pixel-ink);
-  --accent: color-mix(in oklch, var(--pixel-grass) 16%, var(--pixel-cream));
-  --accent-foreground: var(--pixel-forest);
+  --accent: color-mix(in oklch, var(--dex-red) 12%, var(--pixel-cream));
+  --accent-foreground: var(--dex-red-deep);
 }
 
+/* Titlebar = the Pokédex's blue LCD strip. */
 .pixel-panel-titlebar {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 8px 12px;
-  background: var(--pixel-forest);
+  background: var(--dex-blue-dark);
   color: var(--pixel-cream);
   border-bottom: 3px solid var(--pixel-brown);
   font-size: 11px;
@@ -386,7 +425,7 @@
 .pixel-panel-dot {
   width: 8px;
   height: 8px;
-  background: var(--pixel-grass);
+  background: var(--dex-yellow);
   flex-shrink: 0;
 }
 
@@ -412,16 +451,16 @@
 }
 
 /* ===================================================================
-   PIXEL MODULE — small bordered chip, reused for header widgets
-   (clock, sound toggle) inside the Bag shell chrome.
+   PIXEL MODULE — small bordered chip reused for header widgets
+   (clock, sfx toggle) inside the device header.
    =================================================================== */
 .pixel-module {
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 5px 8px;
-  background: var(--pixel-navy);
-  border: 2px solid var(--pixel-forest);
+  background: var(--dex-red-deep);
+  border: 2px solid var(--dex-red-dark);
   white-space: nowrap;
   color: inherit;
 }
@@ -431,46 +470,30 @@ a.pixel-module {
 }
 button.pixel-module:hover,
 a.pixel-module:hover {
-  border-color: var(--pixel-grass);
-  color: var(--pixel-grass);
+  border-color: var(--dex-yellow);
+  color: var(--dex-yellow);
 }
 
 body.theme-pixel #pixel-clock {
-  color: var(--pixel-yellow);
+  color: var(--dex-yellow);
   font-variant-numeric: tabular-nums;
 }
 
 body.theme-pixel a {
-  color: var(--pixel-grass);
+  color: var(--dex-red);
   text-underline-offset: 3px;
 }
 body.theme-pixel a:hover {
-  color: var(--pixel-yellow);
+  color: var(--dex-yellow);
 }
 body.theme-pixel .pixel-panel a,
 body.theme-pixel .pixel-panel.pixel-corners a {
-  color: var(--pixel-forest);
+  color: var(--dex-red-deep);
   font-weight: 600;
 }
 body.theme-pixel .pixel-panel a:hover,
 body.theme-pixel .pixel-panel.pixel-corners a:hover {
-  color: var(--pixel-grass);
-}
-
-body.theme-pixel #site-footer {
-  border-color: var(--pixel-forest);
-  background: var(--pixel-navy-alt);
-  color: var(--muted-foreground);
-}
-body.theme-pixel #site-footer a,
-body.theme-pixel #site-footer button {
-  color: var(--muted-foreground);
-  border-color: var(--border);
-}
-body.theme-pixel #site-footer a:hover,
-body.theme-pixel #site-footer button:hover {
-  color: var(--pixel-grass);
-  border-color: var(--pixel-grass);
+  color: var(--dex-red);
 }
 
 body.theme-pixel code,
@@ -479,14 +502,16 @@ body.theme-pixel .pixel-tag {
   font-size: 10px;
   background: var(--muted);
   border: 2px solid var(--border);
-  color: var(--pixel-forest);
+  color: var(--dex-blue-dark);
   padding: 3px 7px;
 }
 
 body.theme-pixel {
   background: var(--background);
   color: var(--foreground);
-  cursor: url("/cursor-pikachu.svg") 3 2, auto;
+  cursor:
+    url("/cursor-dex.svg") 3 2,
+    auto;
 }
 
 /* Interactive elements (nav items, buttons, links) declare their own
@@ -494,7 +519,27 @@ body.theme-pixel {
    back to the native pointer on hover and hides the custom cursor. Force
    it back everywhere inside the themed app. */
 body.theme-pixel * {
-  cursor: url("/cursor-pikachu.svg") 3 2, auto !important;
+  cursor:
+    url("/cursor-dex.svg") 3 2,
+    auto !important;
+}
+
+/* ===================================================================
+   GLOBAL SCANLINES — one CRT overlay for the whole app (intro + bag).
+   =================================================================== */
+.app-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 120;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.12) 0,
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  opacity: 0.28;
 }
 
 /* ===================================================================
@@ -513,8 +558,7 @@ body.theme-pixel * {
 
 /* ===================================================================
    TRAINER CARD FLIP — sprite block flips to a stat card back, like the
-   trainer card screen in-game. Front stays in normal flow (sizes the
-   container); back is absolutely positioned to match.
+   trainer card screen in-game.
    =================================================================== */
 .trainer-card-flip {
   perspective: 1000px;
@@ -535,6 +579,26 @@ body.theme-pixel * {
   inset: 0;
   transform: rotateY(180deg);
 }
+
+/* Reduced motion: no rotation — cross-fade between faces instead. */
+@media (prefers-reduced-motion: reduce) {
+  .trainer-card-flip-inner {
+    transform: none !important;
+  }
+  .trainer-card-face {
+    transition: opacity 0.25s ease;
+  }
+  .trainer-card-face-back {
+    transform: none;
+    opacity: 0;
+  }
+  .trainer-card-flip[data-flipped="true"] .trainer-card-face {
+    opacity: 0;
+  }
+  .trainer-card-flip[data-flipped="true"] .trainer-card-face-back {
+    opacity: 1;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   .trainer-card-flip-inner {
     transition: none;
@@ -542,68 +606,185 @@ body.theme-pixel * {
 }
 
 /* ===================================================================
-   INTRO SCREEN — title card, restrained CRT texture, no navbar.
+   INTRO SCREEN — Pokédex focus frame, restrained CRT texture.
    =================================================================== */
 .intro-screen {
-  min-height: 100dvh;
-}
-
-.intro-scanlines {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.12) 0,
-    rgba(0, 0, 0, 0.12) 1px,
-    transparent 1px,
-    transparent 3px
-  );
-  opacity: 0.35;
-}
-
-.intro-vignette {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 45%,
-    color-mix(in oklch, var(--pixel-navy) 100%, black 30%) 100%
-  );
-}
-
-.intro-screen > *:not(.intro-scanlines):not(.intro-vignette) {
   position: relative;
-  z-index: 2;
+  height: 100dvh;
+  min-height: 0;
 }
 
 /* ===================================================================
-   BAG SHELL — the full-screen inventory app that replaces the old
-   scrolling homepage. Header + a three-pane body (player card, item
-   list, content panel) that collapses to a stack on small viewports.
+   THE DEVICE — full-screen Pokédex shell. Red hardware frame around a
+   three-pane body (player card, item list, content panel). Desktop:
+   locked to the viewport, only inner panes scroll. Mobile (<860px):
+   natural document flow.
    =================================================================== */
 .bag-shell {
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 12px;
+  padding: clamp(10px, 1.8vw, 22px);
+}
+
+.bag-device {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--dex-red);
+  border: 3px solid var(--dex-red-deep);
+  box-shadow:
+    inset 0 4px 0 0 color-mix(in oklch, var(--dex-red) 70%, white),
+    inset 0 -4px 0 0 color-mix(in oklch, var(--dex-red) 70%, black),
+    6px 6px 0 0 color-mix(in oklch, var(--dex-red-deep) 85%, black);
+  padding: 10px;
 }
 
 .bag-shell-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 9px 14px;
-  border: 3px solid var(--pixel-forest);
-  background: var(--pixel-navy-alt);
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--dex-red-dark);
+  border: 3px solid var(--dex-red-deep);
   color: var(--pixel-cream);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.dex-lens {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: var(--dex-blue-light);
+  border: 3px solid var(--dex-blue-dark);
+  box-shadow:
+    inset 4px 4px 0 0 color-mix(in oklch, var(--dex-blue-light) 55%, white),
+    inset -3px -3px 0 0 var(--dex-blue);
+  position: relative;
+  overflow: hidden;
+}
+/* something alive behind the glass */
+.lens-critter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 58%;
+  width: auto;
+  transform: translate(-50%, -50%);
+  color: var(--dex-blue-dark);
+  opacity: 0.4;
+}
+/* periodic shine sweeping across the glass */
+.lens-glare {
+  position: absolute;
+  top: -40%;
+  left: -80%;
+  width: 42%;
+  height: 180%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  transform: skewX(-22deg);
+  animation: lens-glare-sweep 7s ease-in-out infinite;
+}
+@keyframes lens-glare-sweep {
+  0%,
+  62% {
+    left: -80%;
+  }
+  82%,
+  100% {
+    left: 160%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lens-glare {
+    animation: none;
+    display: none;
+  }
+}
+.dex-lens::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: white;
+  opacity: 0.85;
+}
+
+.dex-leds {
+  display: flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+.dex-led {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  border: 2px solid var(--dex-red-deep);
+  animation: led-blink 1.6s step-end infinite;
+}
+.dex-led-red {
+  background: oklch(62% 0.22 25);
+}
+.dex-led-yellow {
+  background: var(--dex-yellow);
+  animation-delay: 0.25s;
+}
+.dex-led-green {
+  background: var(--pixel-grass);
+  animation-delay: 0.5s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dex-led {
+    animation: none;
+  }
+}
+
+.bag-device-screw {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: var(--dex-red-deep);
+  box-shadow: inset 2px 2px 0 0
+    color-mix(in oklch, var(--dex-red-deep) 60%, black);
+}
+.bag-device-screw::after {
+  content: "";
+  position: absolute;
+  inset: 3px 2px auto 2px;
+  height: 2px;
+  background: color-mix(in oklch, var(--dex-red) 60%, white);
+  transform: rotate(45deg);
+}
+.bag-device-screw-tl {
+  top: 7px;
+  left: 7px;
+}
+.bag-device-screw-tr {
+  top: 7px;
+  right: 7px;
+}
+.bag-device-screw-bl {
+  bottom: 7px;
+  left: 7px;
+}
+.bag-device-screw-br {
+  bottom: 7px;
+  right: 7px;
 }
 
 .bag-shell-body {
@@ -611,13 +792,13 @@ body.theme-pixel * {
   min-height: 0;
   display: grid;
   grid-template-columns: 240px 1fr;
-  gap: 12px;
+  gap: 10px;
 }
 
 .bag-shell-left {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   min-height: 0;
 }
 
@@ -638,14 +819,14 @@ body.theme-pixel * {
   width: 100%;
 }
 
-.bag-shell-credit {
-  text-align: center;
-  font-size: 8px;
-  letter-spacing: 0.03em;
-  color: var(--muted-foreground);
-}
-
 @media (max-width: 860px) {
+  .bag-shell {
+    height: auto;
+    min-height: 100dvh;
+  }
+  .bag-device {
+    flex: none;
+  }
   .bag-shell-body {
     grid-template-columns: 1fr;
   }
@@ -655,6 +836,13 @@ body.theme-pixel * {
   .bag-shell-body[data-mobile-view="content"] .bag-shell-nav {
     display: none;
   }
+  .dex-lens {
+    width: 26px;
+    height: 26px;
+  }
+  .bag-shell-header {
+    gap: 8px;
+  }
 }
 
 /* ===================================================================
@@ -662,7 +850,7 @@ body.theme-pixel * {
    --item-accent, transitioning border/text colour over 200ms.
    =================================================================== */
 .bag-nav-item {
-  --item-accent: var(--pixel-grass);
+  --item-accent: var(--dex-red);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -671,10 +859,15 @@ body.theme-pixel * {
   border: 2px solid transparent;
   background: transparent;
   color: var(--pixel-ink-dim);
-  font-size: 12px;
+  font-family: var(--font-pixel), var(--font-mono), ui-monospace, monospace;
+  font-size: 9px;
+  line-height: 1.5;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 .bag-nav-item:hover {
   background: color-mix(in oklch, var(--pixel-brown) 10%, transparent);
@@ -706,7 +899,7 @@ body.theme-pixel * {
   min-height: 0;
 }
 .content-panel-wrap .pixel-panel-titlebar {
-  background: var(--bag-accent, var(--pixel-forest));
+  background: var(--bag-accent, var(--dex-blue-dark));
   transition: background-color 0.2s ease;
 }
 
@@ -727,5 +920,696 @@ body.theme-pixel * {
 @media (max-width: 860px) {
   .content-panel-wrap.is-mobile-content .bag-back-btn {
     display: flex;
+  }
+}
+
+/* ===================================================================
+   DEX ENTRY EXTRAS — Projectdex search field, segmented stat bars,
+   sprite window, PP counters, signal bars.
+   =================================================================== */
+.dex-search {
+  width: 100%;
+  padding: 7px 10px;
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  color: var(--pixel-ink);
+  background: var(--pixel-cream);
+  border: 2px solid var(--pixel-brown);
+  outline: none;
+}
+.dex-search::placeholder {
+  color: var(--pixel-ink-dim);
+}
+.dex-search:focus {
+  border-color: var(--dex-red);
+  box-shadow: inset 0 0 0 1px var(--dex-red);
+}
+
+.dex-stat-row {
+  display: grid;
+  grid-template-columns: 64px 1fr 28px;
+  align-items: center;
+  gap: 8px;
+}
+.dex-stat-label {
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pixel-ink-dim);
+}
+.dex-stat-value {
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 8px;
+  text-align: right;
+  color: var(--pixel-ink);
+}
+/* numeric readout tinted to match the bar's band */
+.dex-stat-value[data-level="high"] {
+  color: var(--pixel-forest);
+}
+.dex-stat-value[data-level="mid"] {
+  color: color-mix(in oklch, var(--dex-yellow) 55%, var(--pixel-ink));
+}
+.dex-stat-value[data-level="low"] {
+  color: var(--pixel-red);
+}
+.dex-stat-bar {
+  display: flex;
+  gap: 2px;
+}
+.dex-stat-seg {
+  height: 8px;
+  flex: 1;
+  background: var(--pixel-cream-alt);
+  border: 1px solid
+    color-mix(in oklch, var(--pixel-brown) 45%, var(--pixel-cream));
+}
+.dex-stat-seg[data-filled="true"][data-level="low"] {
+  background: var(--pixel-red);
+}
+.dex-stat-seg[data-filled="true"][data-level="mid"] {
+  background: var(--dex-yellow);
+}
+.dex-stat-seg[data-filled="true"][data-level="high"] {
+  background: var(--pixel-grass);
+}
+
+.dex-sprite-window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--dex-blue);
+  border: 3px solid var(--dex-blue-dark);
+  box-shadow: inset 0 0 0 3px color-mix(in oklch, var(--dex-blue) 70%, white);
+  overflow: hidden;
+}
+.dex-sprite-window::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--dex-blue-light) 55%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 10px 10px;
+  opacity: 0.5;
+}
+.dex-sprite-window > * {
+  position: relative;
+}
+
+.pp-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  padding: 2px 6px;
+  border: 2px solid var(--pixel-brown);
+  background: var(--pixel-cream-alt);
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.05em;
+  color: var(--pixel-ink-dim);
+}
+
+.signal-bars {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 12px;
+}
+.signal-bars span {
+  width: 4px;
+  background: currentColor;
+  opacity: 0.35;
+}
+.signal-bars span:nth-child(1) {
+  height: 4px;
+  opacity: 1;
+}
+.signal-bars span:nth-child(2) {
+  height: 7px;
+  opacity: 1;
+}
+.signal-bars span:nth-child(3) {
+  height: 9px;
+  opacity: 1;
+}
+.signal-bars span:nth-child(4) {
+  height: 12px;
+}
+
+/* ===================================================================
+   BOOT SEQUENCE — classic Pokédex power-on overlay.
+   =================================================================== */
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  background: color-mix(in oklch, var(--background) 92%, black);
+}
+.boot-lens {
+  width: 64px;
+  height: 64px;
+  border-radius: 9999px;
+  background: var(--dex-blue-light);
+  border: 4px solid var(--dex-blue-dark);
+  box-shadow:
+    inset 8px 8px 0 0 color-mix(in oklch, var(--dex-blue-light) 55%, white),
+    inset -6px -6px 0 0 var(--dex-blue),
+    0 0 0 4px var(--dex-red-deep),
+    0 0 42px -6px color-mix(in oklch, var(--dex-blue-light) 60%, transparent);
+}
+.boot-leds {
+  display: flex;
+  gap: 12px;
+}
+.boot-leds .dex-led {
+  width: 14px;
+  height: 14px;
+  border-width: 3px;
+}
+.boot-progress {
+  width: min(280px, 70vw);
+  display: flex;
+  gap: 3px;
+}
+.boot-progress span {
+  flex: 1;
+  height: 14px;
+  border: 2px solid var(--dex-red-dark);
+  background: transparent;
+}
+.boot-progress span[data-on="true"] {
+  background: var(--dex-red);
+  box-shadow: inset 0 2px 0 0 color-mix(in oklch, var(--dex-red) 60%, white);
+}
+.boot-text {
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dex-yellow);
+  min-height: 14px;
+}
+
+/* ===================================================================
+   DEVICE HARDWARE � working D-pad + A/B buttons, speaker grille,
+   reactive LEDs, plastic grain. The shell stops being a picture.
+   =================================================================== */
+.bag-device::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      120% 90% at 50% 0%,
+      rgba(255, 255, 255, 0.07),
+      transparent 55%
+    ),
+    repeating-linear-gradient(
+      115deg,
+      rgba(255, 255, 255, 0.02) 0 2px,
+      transparent 2px 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.028) 0 1px,
+      transparent 1px 3px
+    );
+}
+.bag-device > *:not(.bag-device-screw) {
+  position: relative;
+  z-index: 1;
+}
+
+/* LEDs react: yellow blips on any sound, red holds solid while booting */
+.dex-leds[data-pulse="true"] .dex-led-yellow {
+  animation: led-flash 0.17s steps(2) 1;
+}
+@keyframes led-flash {
+  from {
+    background: #ffffff;
+    box-shadow: 0 0 7px 1px color-mix(in oklch, var(--dex-yellow) 80%, white);
+  }
+}
+.dex-leds[data-booting="true"] .dex-led-red {
+  animation: none;
+  background: oklch(66% 0.24 27);
+  box-shadow: 0 0 10px 2px oklch(62% 0.22 25 / 70%);
+}
+.dex-leds[data-booting="true"] .dex-led-yellow,
+.dex-leds[data-booting="true"] .dex-led-green {
+  animation: none;
+  opacity: 0.3;
+}
+
+/* ===================================================================
+   CRT POWER-WIPE � channel-switch collapse between content panels.
+   =================================================================== */
+@keyframes crt-wipe {
+  0% {
+    transform: scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+  38% {
+    transform: scaleY(0.02);
+    opacity: 0.7;
+    filter: brightness(2.2);
+  }
+  39% {
+    transform: scaleY(0.02);
+    opacity: 0.25;
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
+    filter: brightness(1);
+  }
+}
+.crt-wipe {
+  transform-origin: center top;
+  animation: crt-wipe 0.34s steps(7) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .crt-wipe {
+    animation: none;
+  }
+}
+
+/* ===================================================================
+   BOOT EXTRAS � flash-to-white handover + skip hint.
+   =================================================================== */
+.boot-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: #ffffff;
+  animation: boot-flash 0.13s steps(2) forwards;
+}
+@keyframes boot-flash {
+  from {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.boot-hint {
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 7px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklch, var(--pixel-cream) 45%, transparent);
+}
+
+/* ===================================================================
+   SCREEN GLARE � soft specular sheen trailing the pointer (desktop).
+   =================================================================== */
+.screen-glare {
+  position: fixed;
+  inset: -25%;
+  z-index: 118; /* just under the scanline overlay */
+  pointer-events: none;
+  background: radial-gradient(
+    46rem 30rem ellipse at 50% 38%,
+    rgba(255, 255, 255, 0.055),
+    transparent 65%
+  );
+  mix-blend-mode: soft-light;
+  will-change: transform;
+}
+
+/* ===================================================================
+   CURSOR SPARK TRAIL � tiny pixel glints dropped behind the pointer.
+   =================================================================== */
+.cursor-spark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 300;
+  pointer-events: none;
+  animation: spark-fall 0.5s steps(4) forwards;
+}
+@keyframes spark-fall {
+  from {
+    transform: translate(0, 0);
+    opacity: 0.95;
+  }
+  to {
+    transform: translate(-2px, 12px);
+    opacity: 0;
+  }
+}
+
+/* ===================================================================
+   SHINY MODE � Konami code swaps the shell to the gold edition for
+   this visit. Pure CSS-variable swap; panels keep bronze accents so
+   text stays readable on cream.
+   =================================================================== */
+body.theme-shiny {
+  --dex-red: oklch(81% 0.135 90);
+  --dex-red-dark: oklch(69% 0.125 86);
+  --dex-red-deep: oklch(44% 0.09 78);
+  --primary: oklch(56% 0.19 28);
+  --amber: oklch(52% 0.14 48);
+  --amber-dim: oklch(52% 0.14 48 / 16%);
+  --background: oklch(13% 0.03 268);
+}
+body.theme-shiny ::selection {
+  background: var(--dex-red);
+  color: #201709;
+}
+body.theme-shiny .bag-device {
+  box-shadow:
+    inset 0 4px 0 0 color-mix(in oklch, var(--dex-red) 75%, white),
+    inset 0 -4px 0 0 color-mix(in oklch, var(--dex-red) 70%, black),
+    6px 6px 0 0 color-mix(in oklch, var(--background) 85%, black),
+    0 0 34px -8px oklch(81% 0.135 90 / 45%);
+}
+
+/* ===================================================================
+   JOURNEY BADGES � gym-badge road markers along the timeline.
+   =================================================================== */
+.journey-badge {
+  width: 22px;
+  height: 22px;
+  clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+}
+.journey-badge.is-current {
+  animation: badge-glimmer 2.4s ease-in-out infinite;
+}
+@keyframes badge-glimmer {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 transparent);
+  }
+  50% {
+    filter: drop-shadow(0 0 7px oklch(78% 0.13 90 / 85%));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .journey-badge.is-current {
+    animation: none;
+  }
+}
+
+/* ===================================================================
+   LIVING PROJECTDEX � staggered stat-bar fill + blinking critter.
+   =================================================================== */
+.dex-stat-seg[data-filled="true"] {
+  animation: seg-fill 0.3s steps(2) backwards;
+  animation-delay: calc(var(--seg-i, 0) * 42ms);
+}
+@keyframes seg-fill {
+  from {
+    background: var(--pixel-cream-alt);
+  }
+}
+.critter-blink {
+  animation: critter-blink-kf 4.4s step-end infinite;
+}
+@keyframes critter-blink-kf {
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  91%,
+  95% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .critter-blink {
+    display: none;
+  }
+}
+
+/* ===================================================================
+   POK�GEAR CALL MODAL � dialing screen when you "call" the email.
+   =================================================================== */
+.call-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: color-mix(in oklch, var(--background) 72%, black);
+}
+.call-dialog {
+  width: min(330px, 92vw);
+  background: var(--pixel-cream);
+  border: 3px solid var(--pixel-brown);
+  box-shadow: 6px 6px 0 0 color-mix(in oklch, var(--dex-red-deep) 80%, black);
+  padding: 14px;
+  animation: pixel-panel-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.call-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 108px;
+  padding: 18px 10px;
+  background: var(--dex-blue-dark);
+  border: 2px solid var(--pixel-brown);
+  color: var(--pixel-cream);
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.call-screen .call-email {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
+  word-break: break-all;
+  color: var(--dex-yellow);
+}
+.call-wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 16px;
+}
+.call-wave i {
+  width: 4px;
+  height: 5px;
+  background: var(--dex-yellow);
+  animation: call-wave-kf 0.55s ease-in-out infinite;
+}
+.call-wave i:nth-child(2) {
+  animation-delay: 0.09s;
+}
+.call-wave i:nth-child(3) {
+  animation-delay: 0.18s;
+}
+.call-wave i:nth-child(4) {
+  animation-delay: 0.27s;
+}
+.call-wave i:nth-child(5) {
+  animation-delay: 0.36s;
+}
+@keyframes call-wave-kf {
+  0%,
+  100% {
+    height: 5px;
+  }
+  50% {
+    height: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .call-wave i {
+    animation: none;
+    height: 12px;
+  }
+}
+.call-hangup {
+  margin-top: 12px;
+  width: 100%;
+  padding: 9px 12px;
+  font-family: var(--font-pixel), var(--font-mono), monospace;
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--pixel-cream);
+  background: var(--dex-red);
+  border: 2px solid var(--dex-red-deep);
+  cursor: pointer;
+}
+.call-hangup:hover {
+  filter: brightness(1.12);
+}
+.call-hangup:active {
+  transform: translateY(1px);
+}
+
+/* ===================================================================
+   MOVESET � type-tinted cards with a hover lift.
+   =================================================================== */
+.move-card {
+  border-left: 6px solid var(--move-accent, var(--amber));
+  transition:
+    transform 0.12s steps(3),
+    box-shadow 0.12s steps(3),
+    border-color 0.12s ease;
+}
+.move-card:hover {
+  transform: translate(-2px, -2px);
+  border-color: color-mix(in oklch, var(--move-accent) 65%, var(--border));
+  box-shadow: 4px 4px 0 0
+    color-mix(in oklch, var(--move-accent) 40%, transparent);
+}
+.moves-head {
+  color: var(--move-accent, var(--amber));
+}
+.moves-head h3 {
+  color: var(--foreground);
+}
+.move-card .pp-chip {
+  border-color: color-mix(in oklch, var(--move-accent) 55%, var(--pixel-brown));
+}
+.move-card .pixel-tag:hover {
+  border-color: var(--move-accent);
+  color: color-mix(in oklch, var(--move-accent) 70%, var(--pixel-ink));
+}
+
+/* Shared hover-lift — the moveset card's hover, generalized. Tint via
+ * --lift-accent (defaults to amber). */
+.hover-lift {
+  transition:
+    transform 0.12s steps(3),
+    box-shadow 0.12s steps(3),
+    border-color 0.12s ease;
+}
+.hover-lift:hover {
+  transform: translate(-2px, -2px);
+  border-color: color-mix(in oklch, var(--lift-accent, var(--amber)) 65%, var(--border));
+  box-shadow: 4px 4px 0 0 color-mix(in oklch, var(--lift-accent, var(--amber)) 40%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover {
+    transform: none;
+  }
+}
+
+/* ===================================================================
+   POKÉDEX BOOT SCREEN — autofocus reticle locked onto the trainer
+   sprite.
+   =================================================================== */
+
+/* Focus reticle: four L-brackets hugging the avatar. The frame is a
+ * negative-inset overlay on a shrink-wrapped wrapper, so it tracks
+ * whatever size the sprite renders at (compact vs regular cellSize).
+ * GSAP snaps the brackets inward from their data-dx/data-dy offsets;
+ * under prefers-reduced-motion they simply sit locked on. */
+.dex-focus-frame {
+  position: absolute;
+  inset: -14px;
+  pointer-events: none;
+}
+.dex-focus-corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 0 solid var(--primary);
+}
+.dex-focus-tl {
+  top: 0;
+  left: 0;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+.dex-focus-tr {
+  top: 0;
+  right: 0;
+  border-top-width: 3px;
+  border-right-width: 3px;
+}
+.dex-focus-bl {
+  bottom: 0;
+  left: 0;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+}
+.dex-focus-br {
+  bottom: 0;
+  right: 0;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+}
+
+/* Idle lock-on: bracket glow breathes (border/filter only — opacity is
+ * owned by GSAP during the entrance tween), and a scanline sweeps the
+ * portrait. Reduced-motion users get a static, fully-lit frame. */
+@media (prefers-reduced-motion: no-preference) {
+  .dex-focus-corner {
+    animation: dex-focus-pulse 2.6s ease-in-out infinite;
+  }
+  .dex-focus-tl,
+  .dex-focus-br {
+    animation-delay: 0.4s;
+  }
+  .dex-scanline {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    right: 7px;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--primary),
+      transparent
+    );
+    opacity: 0;
+    animation: dex-scan 3.8s linear infinite 1.1s;
+  }
+}
+@keyframes dex-focus-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(
+      0 0 5px color-mix(in oklch, var(--primary) 65%, transparent)
+    );
+  }
+  50% {
+    filter: drop-shadow(0 0 1px transparent);
+  }
+}
+@keyframes dex-scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.6;
+  }
+  88% {
+    opacity: 0.6;
+  }
+  100% {
+    top: calc(100% - 2px);
+    opacity: 0;
   }
 }

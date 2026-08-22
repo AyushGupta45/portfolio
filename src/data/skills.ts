@@ -1,55 +1,35 @@
-export interface SkillCategory {
+interface SkillCategory {
   category: string;
   skills: string[];
 }
 
+/* Merged from LinkedIn "Technical Skills" + stacks actually used across
+ * github.com/AyushGupta45 repos. Category names map to icons in
+ * moveset-panel.tsx (unknown categories fall back to a wrench icon). */
 export const skills: SkillCategory[] = [
   {
-    category: "AI & ML",
-    skills: [
-      "Machine Learning",
-      "Generative AI",
-      "LLM Applications",
-      "RAG Pipelines",
-      "Vector Databases",
-      "Scikit-learn",
-      "PyTorch",
-      "Pandas",
-      "NumPy",
-    ],
-  },
-  {
-    category: "Computer Vision",
-    skills: ["OpenCV", "Ultralytics / YOLO", "Object Detection", "Edge Inference"],
-  },
-  {
-    category: "Robotics",
-    skills: ["Robotics", "ROS2", "Digital Twins", "Embedded Control", "Sensor Integration"],
-  },
-  {
-    category: "Embedded Systems",
-    skills: ["Embedded C", "Embedded Firmware", "Embedded Linux", "Raspberry Pi", "ESP32", "IoT"],
-  },
-  {
-    category: "Automation",
-    skills: ["Industrial Automation", "Anomaly Detection", "Edge Deployment", "Real-Time Monitoring"],
-  },
-  {
-    category: "Cloud",
-    skills: ["AWS", "Self-Hosted Infrastructure", "Computer Networks", "VPN / WireGuard"],
-  },
-  {
-    category: "Backend",
-    skills: ["Python", "Java", "C / C++", "Flask", "SQL (PostgreSQL, MySQL)", "Concurrency"],
+    category: "Languages",
+    skills: ["JavaScript", "TypeScript", "Python", "SQL", "Kotlin"],
   },
   {
     category: "Frontend",
-    skills: ["HTML / CSS", "Streamlit", "Tkinter", "Swing", "Full-Stack Web Apps"],
+    skills: ["React.js", "Next.js", "Tailwind CSS", "ShadCN UI", "ReactFlow", "Redux Toolkit", "Recharts"],
+  },
+  {
+    category: "Backend",
+    skills: ["Node.js", "Express.js", "tRPC", "REST APIs", "Better Auth", "JWT"],
+  },
+  {
+    category: "Databases",
+    skills: ["PostgreSQL", "MongoDB", "Drizzle ORM", "Mongoose", "Cloudinary"],
+  },
+  {
+    category: "AI & ML",
+    skills: ["LLM Integration", "Agentic Workflows", "Multi-Agent Systems", "Groq API", "Puppeteer", "Cheerio"],
   },
   {
     category: "Tools",
-    skills: ["Git / Version Control", "Matplotlib", "BeautifulSoup", "Linux CLI"],
+    skills: ["Git & GitHub", "Postman", "Vercel", "Zod", "Nodemailer"],
   },
 ];
 
-export const spokenLanguages = ["Python", "C/C++", "Java", "JavaScript", "Embedded C", "SQL", "HTML/CSS", "Bash/Shell Scripting"];

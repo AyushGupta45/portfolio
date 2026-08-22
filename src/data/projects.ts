@@ -4,187 +4,169 @@ export type ProjectCategory =
   | "Embedded Systems"
   | "AI / ML"
   | "Automation"
-  | "Infrastructure";
+  | "Infrastructure"
+  | "Web Development";
 
 export interface Project {
   slug: string;
   name: string;
   tagline: string;
+  /** Short bold lead line shown above `description` in the Projectdex
+   * detail panel. Optional — when absent the description renders alone. */
+  lead?: string;
   description: string;
   categories: ProjectCategory[];
   tech: string[];
   achievements: string[];
-  github: string;
+  /** Repo URL — leave undefined for private/off-GitHub projects and the
+   * "view source" link disappears from the UI automatically. */
+  github?: string;
   period: string;
-  featured: boolean;
   status: "Active" | "Shipped" | "Published";
-  /** false = GitHub (Arnav-PC) only, hidden from the curated Projectdex. Defaults to true. */
+  /** false = hidden from the curated Projectdex. Defaults to true. */
   showInDex?: boolean;
 }
 
-// Verified against github.com/ArnavDotExe (public repos) and Arnav's resume.
+/* Sourced from github.com/AyushGupta45 (public repos + READMEs), Aug 2026.
+ * Set showInDex: false to keep a repo out of the curated list. */
+
 export const projects: Project[] = [
   {
-    slug: "gatenet-am",
-    name: "GateNet-AM",
-    tagline: "gated neural net that catches 3D-print fails in real time",
+    slug: "scrapeflow",
+    name: "ScrapeFlow",
+    tagline: "build web-scraping pipelines on a node canvas — with AI that understands HTML",
+    lead: "A visual workflow platform for web scraping and data processing.",
     description:
-      "A real-time anomaly detection pipeline for FDM 3D printing that watches live video of a print in progress and flags failures before they waste hours of material and time. GateNet-AM is a custom gated neural network architecture designed specifically for lightweight, low-latency inference on edge hardware.",
-    categories: ["Computer Vision", "AI / ML", "Embedded Systems", "Automation"],
-    tech: ["Python", "OpenCV", "PyTorch", "Edge Inference", "Computer Vision"],
+      "Drag and drop nodes like 'Launch Browser', 'Extract Data with AI', 'Filter Array', and 'Export CSV', then connect them into a pipeline that runs on demand or on a schedule. AI is embedded directly in the pipeline — extract structured data from any page with natural-language prompts, then summarize, analyze sentiment, generate charts, and produce full analytical reports inside the same workflow.",
+    categories: ["Web Development", "AI / ML", "Automation"],
+    tech: ["TypeScript", "Next.js", "React", "PostgreSQL (Neon)", "Browser Automation"],
     achievements: [
-      "built a custom gated NN instead of just fine-tuning something off-the-shelf",
-      "auto-flags defects with visual annotations for debugging",
-      "watches live video, not logs after the fact",
+      "no-code pipeline builder — nodes on a canvas instead of brittle scraping scripts",
+      "natural-language data extraction embedded as a pipeline node",
+      "runs on demand or scheduled; exports straight to CSV",
     ],
-    github: "https://github.com/ArnavDotExe/GatenetAM",
-    period: "Jun 2025 — Feb 2026",
-    featured: true,
-    status: "Shipped",
-  },
-  {
-    slug: "bytecave",
-    name: "ByteCave",
-    tagline: "self-hosted DNS, NAS, VPN & media server on a raspberry pi",
-    description:
-      "A private-cloud-in-a-box: ByteCave combines Pi-hole DNS filtering, a WireGuard VPN, a role-based-access NAS, and a custom lightweight media server into one self-hosted Raspberry Pi system, built to run entirely outside third-party cloud infrastructure.",
-    categories: ["Infrastructure", "Automation", "Embedded Systems"],
-    tech: ["Raspberry Pi", "Pi-hole", "WireGuard", "Embedded Linux", "Networking"],
-    achievements: [
-      "pi-hole + wireguard for ad-blocking and remote access, zero third parties involved",
-      "self-hosted NAS with actual role-based access control",
-      "shipped PiCone, a lightweight media server for 32-bit ARM",
-    ],
-    github: "https://github.com/ArnavDotExe/ByteCave",
-    period: "Nov 2025 — Present",
-    featured: true,
+    github: "https://github.com/AyushGupta45/ScrapeFlow",
+    period: "Aug 2025 — Apr 2026",
     status: "Active",
   },
   {
-    slug: "codecomp",
-    name: "CodeComp",
-    tagline: "ask your codebase questions, get grounded answers back",
+    slug: "meetai",
+    name: "MeetAI",
+    tagline: "mock one-on-ones with AI agents — transcripts, summaries & contextual chat",
+    lead: "A full-stack mock-call meeting platform.",
     description:
-      "A Flask application that clones a GitHub repository, parses its structure, and lets you ask questions about the codebase in natural language. Combines AST-aware chunking with semantic embeddings and keyword search so answers stay grounded in the actual source.",
-    categories: ["AI / ML", "Infrastructure"],
-    tech: ["Flask", "Python AST", "BAAI/bge-small-en-v1.5", "Groq", "RAG", "Vector Search"],
-    achievements: [
-      "AST-aware chunking so it actually understands code structure",
-      "hybrid retrieval: cosine similarity + keyword scoring",
-      "groq-powered answers that stay grounded in your actual repo",
+      "Create AI agents, hold one-on-one meetings with them, and get detailed summaries, transcripts, and contextual chats afterwards. Built end-to-end with Next.js SSR, a tRPC API layer over Drizzle ORM + Neon PostgreSQL, Better Auth, Polar subscriptions (monthly/yearly, sandbox-ready), and Groq language models powering agent responses.",
+    categories: ["Web Development", "AI / ML"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "tRPC",
+      "Drizzle ORM",
+      "Neon PostgreSQL",
+      "Better Auth",
+      "Polar",
+      "Groq LLMs",
     ],
-    github: "https://github.com/ArnavDotExe/CodeComp",
-    period: "Jan 2026 — Apr 2026",
-    featured: true,
-    status: "Shipped",
+    achievements: [
+      "custom AI agents with editable name + instructions (10 on the free tier)",
+      "post-meeting summaries, transcripts, and chats grounded in the conversation",
+      "subscription billing wired through Polar",
+      "live at meetai-steel.vercel.app",
+    ],
+    github: "https://github.com/AyushGupta45/Meetai",
+    period: "Jun 2025 — Jun 2026",
+    status: "Active",
   },
   {
-    slug: "motoguard",
-    name: "MotoGuard",
-    tagline: "copyrighted car anti-theft system, camera-based intruder capture",
+    slug: "tradesafe",
+    name: "TradeSafe",
+    tagline: "crypto arbitrage scanner that makes LLM agents debate the trade first",
+    lead: "An AI-powered cryptocurrency arbitrage platform.",
     description:
-      "A driver-side camera and connectivity module for vehicle security, published as copyrighted IP in 2025. Captures and streams evidence of an intrusion in real time over a bandwidth-optimized video pipeline running on ESP32.",
-    categories: ["Embedded Systems", "Computer Vision", "Automation"],
-    tech: ["ESP32", "Embedded Firmware", "MJPEG", "Computer Vision", "IoT"],
-    achievements: [
-      "copyrighted IP, published 2025",
-      "driver-side cam catches intruders in the act",
-      "custom MJPEG encoder on ESP32 for low-latency streaming",
+      "It detects price spreads across five exchanges (Binance, Kraken, KuCoin, Bybit, Gate.io), then runs a Bull / Bear / Mediator multi-agent debate through an LLM cascade (Groq → OpenRouter → NVIDIA, Llama 3 70B) before simulating execution and logging it to the portfolio. Next.js 14 App Router over Drizzle ORM + Neon PostgreSQL, BetterAuth (email/password + Google OAuth), Recharts dashboards.",
+    categories: ["Web Development", "AI / ML", "Infrastructure"],
+    tech: [
+      "Next.js",
+      "TypeScript",
+      "Drizzle ORM",
+      "Neon PostgreSQL",
+      "Groq / OpenRouter / NVIDIA",
+      "Llama 3 70B",
+      "Recharts",
     ],
-    github: "https://github.com/ArnavDotExe/Car-Theft-Auto",
-    period: "Published 2025",
-    featured: true,
+    achievements: [
+      "live price-spread detection across 5 exchanges",
+      "Bull/Bear/Mediator agent debate gates every simulated trade",
+      "cascading LLM fallback: Groq → OpenRouter → NVIDIA",
+      "portfolio analytics: win rate, drawdown, profit factor",
+    ],
+    github: "https://github.com/AyushGupta45/tradesafe",
+    period: "Nov 2025 — Mar 2026",
+    status: "Active",
+  },
+ 
+  {
+    slug: "assignmenthub",
+    name: "AssignmentHub",
+    tagline: "role-based assignment platform — admins assign, students submit, work gets evaluated",
+    lead: "A full-stack assignment management platform.",
+    description:
+      "Admins create assignments, students submit work, and admins evaluate submissions — with notifications, file uploads, and real-time dashboards. React 19 + Vite SPA (Tailwind v4, shadcn/ui, Redux Toolkit) on an Express + MongoDB API with httpOnly-cookie JWT auth, role-based access, and Multer→Cloudinary upload storage.",
+    categories: ["Web Development"],
+    tech: [
+      "React 19",
+      "Vite",
+      "Redux Toolkit",
+      "shadcn/ui",
+      "Express",
+      "MongoDB",
+      "JWT",
+      "Cloudinary",
+    ],
+    achievements: [
+      "student/admin roles enforced via httpOnly-cookie JWT auth",
+      "file uploads through Multer + Cloudinary (memory storage)",
+      "dashboards and notifications for both sides of the workflow",
+    ],
+    github: "https://github.com/AyushGupta45/AssignmentHub",
+    period: "Feb 2024 — Mar 2026",
+    status: "Active",
+  },
+  {
+    slug: "cricklytics",
+    name: "Cricklytics",
+    tagline: "IPL win predictor — Random Forest over 15 seasons of match data",
+    lead: "An IPL match win predictor that calculates live win/lose probabilities from the current state of play.",
+    description:
+      "Inputs include score, wickets left, venue, and more — fed to a Random Forest model trained on historical IPL data from 2008 to 2023. Ships as two live Streamlit apps: a past-match analysis and visualization tool, and a live match prediction tool.",
+    categories: ["AI / ML"],
+    tech: ["Python", "Random Forest", "Streamlit", "Jupyter"],
+    achievements: [
+      "trained on 15+ seasons of real IPL match data",
+      "live win probabilities from match state — not just pre-match guesses",
+      "two public Streamlit deployments: analysis tool + live predictor",
+    ],
+    github: "https://github.com/AyushGupta45/Cricklytics",
+    period: "Feb 2024 — May 2024",
     status: "Published",
   },
   {
-    slug: "tinygpt",
-    name: "TinyGPT",
-    tagline: "a GPT built from scratch, just to see how it works",
+    slug: "wanderlust",
+    name: "Wanderlust",
+    tagline: "travel-listings MVC app — Node, Express & Mongo with Cloudinary image uploads",
+    lead: "A classic full-stack travel listings app following the MVC pattern.",
     description:
-      "An exploration of transformer language model internals, implementing a small GPT-style model from first principles to understand attention, tokenization, and training dynamics rather than relying on a pretrained checkpoint.",
-    categories: ["AI / ML"],
-    tech: ["Python", "PyTorch", "Transformers", "Jupyter"],
-    achievements: ["wrote the transformer architecture from first principles — no shortcuts"],
-    github: "https://github.com/ArnavDotExe/TinyGPT",
-    period: "2026",
-    featured: false,
-    status: "Shipped",
-  },
-  {
-    slug: "bitpy",
-    name: "bitPy",
-    tagline: "a bittorrent client built from scratch — no libraries, just the protocol",
-    description:
-      "A minimal, educational BitTorrent client written in pure Python — tracker communication, peer connections, and piece exchange/verification all implemented straight from the protocol spec rather than a wrapper library. Ships with both a Tkinter GUI and a CLI.",
-    categories: ["Infrastructure"],
-    tech: ["Python", "Tkinter", "Networking", "Bencode"],
+      "Express routes and controllers over Mongoose models, EJS server-rendered views, Cloudinary-backed image handling, and middleware-driven auth and validation. The project where the fundamentals got reps — routing, schemas, sessions, and server-side rendering.",
+    categories: ["Web Development"],
+    tech: ["Node.js", "Express", "EJS", "MongoDB", "Mongoose", "Cloudinary"],
     achievements: [
-      "implemented the BitTorrent protocol from spec — tracker comms, peer handshakes, piece scheduling — zero external dependencies",
-      "piece verification and storage handled manually, no torrent library doing the work",
-      "both a GUI and a CLI, same core underneath",
+      "strict MVC separation — controllers, models, routes, middleware",
+      "image uploads handled through Cloudinary config layer",
+      "server-rendered EJS views with validation middleware",
     ],
-    github: "https://github.com/ArnavDotExe/bitPy",
-    period: "Aug 2025 — Present",
-    featured: false,
-    status: "Active",
-  },
-  {
-    slug: "picone",
-    name: "PiCone",
-    tagline: "self-hosted media server that streams straight off a raspberry pi, no transcoding",
-    description:
-      "A lightweight, self-hosted media server built specifically for 32-bit ARM Raspberry Pi hardware — direct HTTP streaming with byte-range support (seekable in a plain browser player) and zero transcoding, so it stays light on CPU and memory. REST API for movies and TV, optional TMDb metadata, and playback position memory. Originally shipped as part of ByteCave.",
-    categories: ["Infrastructure", "Embedded Systems"],
-    tech: ["Python", "Raspberry Pi", "REST API", "TMDb"],
-    achievements: [
-      "zero-transcode direct streaming with byte-range support — seeks work in a plain browser player",
-      "runs on 32-bit ARM without choking, no GPU or beefy CPU needed",
-      "remembers playback position and pulls poster/title metadata from TMDb",
-    ],
-    github: "https://github.com/ArnavDotExe/PiCone",
-    period: "Apr 2026",
-    featured: false,
+    github: "https://github.com/AyushGupta45/wanderlust",
+    period: "Jan 2024",
     status: "Shipped",
-    showInDex: false,
-  },
-  {
-    slug: "flappy-ai",
-    name: "Flappy.ai",
-    tagline: "flappy bird, but the AI learns to play it via genetic algorithm",
-    description:
-      "A Flappy Bird clone with a twist — instead of hardcoding the AI, a population of 100 birds evolves across generations using a genetic algorithm. Each bird's tiny neural network (distance to the next pipe, height difference) gets selected and mutated based on how far it survives, with a real-time view of generation, score, and birds-alive stats while it trains.",
-    categories: ["AI / ML"],
-    tech: ["Python", "Pygame", "NumPy", "Genetic Algorithms", "Neural Networks"],
-    achievements: [
-      "population of 100 birds evolving via natural selection, not a pretrained model",
-      "tiny neural net per bird — 2 inputs, weights evolve generation over generation",
-      "live training visualization: generation, score, and birds-alive in real time",
-    ],
-    github: "https://github.com/ArnavDotExe/Flappy.ai",
-    period: "Oct 2024",
-    featured: false,
-    status: "Shipped",
-  },
-  {
-    slug: "pytorrentstreamer",
-    name: "PyTorrentStreamer",
-    tagline: "search a movie, stream it straight to vlc — no download-and-wait",
-    description:
-      "A command-line tool for searching, streaming, and downloading movies over torrents. Pulls listings from the YTS API, then hands off to WebTorrent CLI for the actual transfer — stream picks play straight into VLC as they download instead of waiting for the whole file.",
-    categories: ["Infrastructure"],
-    tech: ["Python", "YTS API", "WebTorrent", "VLC"],
-    achievements: [
-      "streams while downloading via WebTorrent CLI — no waiting for the full file",
-      "pulls real listings from the YTS API instead of scraping",
-      "hands playback straight to VLC",
-    ],
-    github: "https://github.com/ArnavDotExe/PyTorrentStreamer",
-    period: "Aug 2024 — Dec 2024",
-    featured: false,
-    status: "Shipped",
-    showInDex: false,
   },
 ];
 
-export const featuredProjects = projects.filter((p) => p.featured);
-export const otherProjects = projects.filter((p) => !p.featured);

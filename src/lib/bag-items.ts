@@ -1,32 +1,30 @@
 import {
-  Backpack,
   Bot,
   FileText,
+  GraduationCap,
   MessageCircle,
   Sparkles,
   Sprout,
   Swords,
-  Camera as CameraIcon,
   type LucideIcon,
 } from "lucide-react";
-import { certifications } from "@/data/certifications";
+import { profile } from "@/data/profile";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/brand-icons";
 
 type IconComponent = LucideIcon | typeof GithubIcon;
 
 export type BagItemId =
   | "about"
+  | "education"
   | "experience"
   | "projects"
   | "skills"
-  | "certifications"
-  | "photography"
   | "github"
   | "linkedin"
   | "resume"
   | "contact";
 
-export interface BagItem {
+interface BagItem {
   id: BagItemId;
   /** Nav list label. */
   label: string;
@@ -47,6 +45,14 @@ const ALL_BAG_ITEMS: BagItem[] = [
     accent: "oklch(47% 0.17 275)",
     accentIsLight: false,
     icon: Sprout,
+  },
+  {
+    id: "education",
+    label: "Education",
+    metaphor: "Trainer School",
+    accent: "oklch(48% 0.13 155)",
+    accentIsLight: false,
+    icon: GraduationCap,
   },
   {
     id: "experience",
@@ -73,25 +79,9 @@ const ALL_BAG_ITEMS: BagItem[] = [
     icon: Sparkles,
   },
   {
-    id: "certifications",
-    label: "Certifications",
-    metaphor: "Badge Case",
-    accent: "oklch(72% 0.14 70)",
-    accentIsLight: true,
-    icon: Backpack,
-  },
-  {
-    id: "photography",
-    label: "Photography",
-    metaphor: "Photo Album",
-    accent: "oklch(55% 0.09 55)",
-    accentIsLight: false,
-    icon: CameraIcon,
-  },
-  {
     id: "github",
     label: "GitHub",
-    metaphor: "Arnav-PC",
+    metaphor: profile.pcName,
     accent: "oklch(35% 0.03 280)",
     accentIsLight: false,
     icon: GithubIcon,
@@ -122,8 +112,4 @@ const ALL_BAG_ITEMS: BagItem[] = [
   },
 ];
 
-// Badge Case only shows once there's something to put in it — see
-// src/data/certifications.ts for why the array starts empty.
-export const BAG_ITEMS: BagItem[] = ALL_BAG_ITEMS.filter(
-  (item) => item.id !== "certifications" || certifications.length > 0
-);
+export const BAG_ITEMS: BagItem[] = ALL_BAG_ITEMS;

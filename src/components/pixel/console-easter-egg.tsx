@@ -7,8 +7,8 @@ import { profile } from "@/data/profile";
 export function ConsoleEasterEgg() {
   useEffect(() => {
     console.log(
-      "%c ARNAV.EXE ",
-      "background:#4f9e46;color:#12141c;font-weight:bold;padding:2px 6px;"
+      `%c ${profile.consoleTag} `,
+      "background:#c22f3d;color:#fdf6e3;font-weight:bold;padding:2px 6px;"
     );
     console.log(
       `poking around in the console, huh? nice.\nsource's right here: ${profile.links.github}\n(ノಠ益ಠ)ノ彡┻━┻`

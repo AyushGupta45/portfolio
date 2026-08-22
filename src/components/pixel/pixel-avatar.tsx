@@ -2,18 +2,43 @@
 
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import { profile } from "@/data/profile";
 import { withBasePath } from "@/lib/base-path";
+import { sfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
 
 const SIZE_UNIT = 14;
 
-const DIALOGUE = [
-  "...",
-  "still compiling my thoughts.",
-  '"jack of all trades, master of none — but often better than a master of one."',
-  "ctrl+s is my love language.",
-  "ask me about ByteCave. actually don't, I'll never stop.",
-];
+const DIALOGUE = [...profile.dialogue];
+
+/** Reveals `text` a character at a time, Game Boy text-box style, with a
+ * quiet blip every other visible character. Full text instantly under
+ * prefers-reduced-motion. */
+function useTypewriterLine(text: string, speed = 30): string {
+  const [output, setOutput] = useState(text);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      setOutput(text);
+      return;
+    }
+
+    setOutput("");
+    let i = 0;
+    const interval = window.setInterval(() => {
+      i++;
+      setOutput(text.slice(0, i));
+      const ch = text[i - 1];
+      if (i % 2 === 0 && ch && ch !== " ") sfx.blip();
+      if (i >= text.length) window.clearInterval(interval);
+    }, speed);
+
+    return () => window.clearInterval(interval);
+  }, [text, speed]);
+
+  return output;
+}
 
 /** Shared by PixelAvatar's own built-in dialogue and any caller that needs
  * to render the dialogue box itself (e.g. outside the avatar's own column,
@@ -48,6 +73,7 @@ export function PixelAvatar({
   onClick?: () => void;
 }) {
   const { line, cycle } = useTrainerDialogue();
+  const typedLine = useTypewriterLine(line);
   const size = cellSize * SIZE_UNIT;
 
   const frame = (
@@ -56,8 +82,8 @@ export function PixelAvatar({
       style={{ width: size, height: size }}
     >
       <Image
-        src={withBasePath("/avatar-placeholder.png")}
-        alt="Arnav Mangaonkar"
+        src={withBasePath("/me.png")}
+        alt={profile.name}
         fill
         sizes={`${size}px`}
         className="object-cover"
@@ -76,7 +102,7 @@ export function PixelAvatar({
       <button
         type="button"
         onClick={onClick}
-        aria-label="Talk to Arnav"
+        aria-label="Talk to the trainer"
         className={cn("pixel-frame animate-pixel-bob inline-flex", className)}
       >
         {frame}
@@ -89,17 +115,22 @@ export function PixelAvatar({
       <button
         type="button"
         onClick={cycle}
-        aria-label="Talk to Arnav"
+        aria-label="Talk to the trainer"
         className="pixel-frame animate-pixel-bob"
       >
         {frame}
       </button>
 
       <div
-        className="pixel-panel pixel-corners-sm max-w-[220px] px-3 py-2 text-center text-xs"
+        className="pixel-panel pixel-corners-sm flex min-h-10 max-w-[220px] items-center px-3 py-2 text-center text-xs"
         aria-live="polite"
       >
-        <p className="text-[var(--pixel-ink)]">{line}</p>
+        <p className="text-[var(--pixel-ink)]">
+          {typedLine}
+          <span className="animate-blink" aria-hidden="true">
+            ▼
+          </span>
+        </p>
       </div>
     </div>
   );

@@ -4,13 +4,13 @@ import type { ComponentType } from "react";
 import { ChevronLeft } from "lucide-react";
 import type { BagItemId } from "@/lib/bag-items";
 import { PixelPanel } from "@/components/pixel/pixel-panel";
+import { cn } from "@/lib/utils";
 import { useBag } from "./bag-provider";
 import { TrainerProfilePanel } from "./panels/trainer-profile-panel";
+import { EducationPanel } from "./panels/education-panel";
 import { JourneyPanel } from "./panels/journey-panel";
 import { PokedexPanel } from "./panels/pokedex-panel";
 import { MovesetPanel } from "./panels/moveset-panel";
-import { BadgeCasePanel } from "./panels/badge-case-panel";
-import { CameraPanel } from "./panels/camera-panel";
 import { PcPanel } from "./panels/pc-panel";
 import { TrainerIdPanel } from "./panels/trainer-id-panel";
 import { DocumentsPanel } from "./panels/documents-panel";
@@ -18,11 +18,10 @@ import { PokegearPanel } from "./panels/pokegear-panel";
 
 const PANELS: Record<BagItemId, ComponentType> = {
   about: TrainerProfilePanel,
+  education: EducationPanel,
   experience: JourneyPanel,
   projects: PokedexPanel,
   skills: MovesetPanel,
-  certifications: BadgeCasePanel,
-  photography: CameraPanel,
   github: PcPanel,
   linkedin: TrainerIdPanel,
   resume: DocumentsPanel,
@@ -34,6 +33,10 @@ export function ContentPanel({ className }: { className?: string }) {
   const item = items.find((i) => i.id === activeId) ?? items[0];
   const Panel = PANELS[item.id];
 
+  // Projectdex manages its own two-pane scrolling (list + card scroll
+  // inside a fixed section), so the outer container must not scroll.
+  const isDex = item.id === "projects";
+
   return (
     <div
       className={`content-panel-wrap ${mobileView === "content" ? "is-mobile-content" : ""} ${className ?? ""}`}
@@ -44,8 +47,16 @@ export function ContentPanel({ className }: { className?: string }) {
           <ChevronLeft size={13} />
           back
         </button>
-        <div className="flex-1 overflow-y-auto p-5 md:p-6">
-          <Panel />
+        <div
+          className={cn(
+            "min-h-0 flex-1 overflow-y-auto p-5 md:p-6",
+            isDex && "md:overflow-hidden"
+          )}
+        >
+          {/* Keyed by panel id so each switch replays the CRT power-wipe */}
+          <div key={item.id} className={cn("crt-wipe", isDex && "md:h-full")}>
+            <Panel />
+          </div>
         </div>
       </PixelPanel>
     </div>

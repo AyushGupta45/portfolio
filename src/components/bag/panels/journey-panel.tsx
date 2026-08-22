@@ -10,17 +10,21 @@ export function JourneyPanel() {
       />
       {experience.map((role) => (
         <li key={role.company} className="relative">
+          {/* gym-badge marker on the road; the current stop glimmers */}
           <span
-            className="absolute -left-8 top-1 flex h-5 w-5 items-center justify-center border-2 border-[var(--pixel-cream)]"
+            className={`journey-badge absolute -left-8 top-1 flex items-center justify-center border-2 border-[var(--pixel-cream)] ${
+              role.current ? "journey-badge is-current" : ""
+            }`}
             style={{ background: role.current ? "var(--pixel-yellow)" : "var(--pixel-grass)" }}
             aria-hidden="true"
           >
             {role.current && <Star size={11} className="text-[var(--pixel-ink)]" fill="currentColor" />}
           </span>
           <div
-            className={`border-2 bg-card p-4 transition-colors ${
+            className={`hover-lift border-2 bg-card p-4 ${
               role.current ? "border-amber" : "border-border"
             }`}
+            style={{ "--lift-accent": role.current ? "var(--pixel-yellow)" : "var(--pixel-grass)" } as React.CSSProperties}
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h3 className="text-sm font-semibold text-foreground">

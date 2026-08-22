@@ -1,4 +1,4 @@
-import { withBasePath } from "@/lib/base-path";
+import { PixelPokeball } from "@/components/pixel/pokeball";
 
 const SIZE_UNIT = 14;
 
@@ -17,19 +17,11 @@ export function CompanionSprite({
       aria-hidden="true"
     >
       <span
-        className="pixel-frame-inner pixel-corners pixel-corners-sm flex items-center justify-center bg-[var(--pixel-cream)]"
+        className="pixel-frame-inner pixel-corners pixel-corners-sm flex items-center justify-center overflow-hidden bg-[var(--pixel-cream)]"
         style={{ width: size, height: size }}
       >
-        <img
-          src={withBasePath("/dragonite.png")}
-          alt="Dragonite"
-          width={size * 0.85}
-          height={size * 0.85}
-          className="object-contain"
-          style={{
-            imageRendering: "pixelated",
-          }}
-        />
+        {/* ~62% of the frame so the ball reads as "inside" the window */}
+        <PixelPokeball cellSize={Math.max(3, Math.round(cellSize * 0.625))} />
       </span>
     </span>
   );

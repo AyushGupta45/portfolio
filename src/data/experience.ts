@@ -1,4 +1,4 @@
-export interface ExperienceEntry {
+interface ExperienceEntry {
   role: string;
   company: string;
   companyUrl?: string;
@@ -9,40 +9,33 @@ export interface ExperienceEntry {
   tags: string[];
 }
 
+/* Newest first. The first entry marked `current: true` feeds the intro
+ * screen and trainer card. */
 export const experience: ExperienceEntry[] = [
   {
-    role: "R&D Engineer",
-    company: "Binks",
-    period: "Jul 2026 — Present",
+    role: "Systems Engineer",
+    company: "Tata Consultancy Services",
+    companyUrl: "https://www.tcs.com",
+    period: "Jun 2026 — Present",
     current: true,
-    domain: "Manufacturing Efficiency & Automation",
+    domain: "TCS Digital · Enterprise-Scale Projects",
     points: [
-      "Making manufacturing less painful — automation and process monitoring for real production lines, not just demos.",
+      "Joined the Digital track, applying full-stack skills to enterprise-scale projects.",
+      "Deepening expertise in full-stack architecture, agentic AI systems and scalable backend design.",
+      "Still building independently — see the Projectdex for open-source work.",
     ],
-    tags: ["R&D", "Manufacturing", "Automation", "Process Efficiency"],
+    tags: ["Enterprise", "Full-Stack", "Next.js", "TypeScript"],
   },
   {
-    role: "Embedded Developer Consultant",
-    company: "Vektor3d Systems LLP",
-    period: "Jun 2025 — Jan 2026",
+    role: "Freelance Full-Stack Developer",
+    company: "Independent Clients",
+    period: "2025 — 2026", // REPLACE: exact months if you want them
     current: false,
-    domain: "R&D / Industrial Automation",
+    domain: "Production Systems for Real Businesses",
     points: [
-      "Built a system that catches 3D-printer defects in real time, before they waste hours of filament.",
-      "Ran anomaly-detection models on-device — video in, alerts out.",
+      "Shipped a shift-scheduling backend to production for a Canada-based construction company.",
+      "Built a zero-cost, Git-backed CMS website for Ayushman Hospitals.",
     ],
-    tags: ["Embedded C", "Edge AI", "Anomaly Detection", "Additive Manufacturing", "R&D"],
-  },
-  {
-    role: "Data Analyst Intern",
-    company: "Tata Power Renewables Limited",
-    period: "Dec 2024 — Mar 2025",
-    current: false,
-    domain: "Energy / Industrial Data Systems",
-    points: [
-      "Built a dashboard to visualize energy generation data in real time.",
-      "Wrote the monitoring script that flags transformers acting up before they become a real problem.",
-    ],
-    tags: ["Python", "Data Analysis", "Real-Time Monitoring", "Energy Systems"],
+    tags: ["Node.js", "CMS", "Client Delivery"],
   },
 ];

@@ -2,7 +2,14 @@
 
 import { useState } from "react";
 import { RotateCw } from "lucide-react";
-import { siPython, siOpencv, siPytorch, siTensorflow, siRaspberrypi } from "simple-icons";
+import {
+  siNextdotjs,
+  siNodedotjs,
+  siPostgresql,
+  siPython,
+  siReact,
+  siTypescript,
+} from "simple-icons";
 import { profile } from "@/data/profile";
 import { experience } from "@/data/experience";
 import { PixelAvatar, useTrainerDialogue } from "./pixel-avatar";
@@ -17,7 +24,9 @@ const SPRITE_ROW_WIDTH = 276;
 
 const current = experience.find((e) => e.current) ?? experience[0];
 
-const TOP_SKILLS = [siPython, siOpencv, siPytorch, siTensorflow, siRaspberrypi];
+/** Actual core stack — official brand marks, swapped in for the old
+ * robotics-era badge set (Python/OpenCV/PyTorch/etc.). */
+const TOP_SKILLS = [siTypescript, siReact, siNextdotjs, siNodedotjs, siPostgresql, siPython];
 
 const hometown = profile.location.split(",")[0].trim();
 const yearsBuilding = profile.stats.find((s) => s.label === "Years building")?.value ?? "4+";

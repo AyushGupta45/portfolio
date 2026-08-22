@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Backpack } from "lucide-react";
+import { profile } from "@/data/profile";
 
 const STORAGE_KEY = "bag-first-open-seen";
 
@@ -61,7 +62,7 @@ export function FirstOpenPopup() {
           obtained the BAG!
         </p>
         <p className="text-xs text-muted-foreground">
-          arnav&apos;s portfolio, in full — browse the tabs on the left.
+          {profile.bagTitle}, in full — browse the tabs on the left.
         </p>
         <button
           type="button"

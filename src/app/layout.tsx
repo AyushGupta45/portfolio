@@ -24,40 +24,34 @@ const pressStart2P = Press_Start_2P({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arnavmangaonkar.dev";
-const TITLE = "Arnav Mangaonkar — AI, Robotics & Embedded Systems Engineer";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yourusername.github.io";
+const TITLE = `${profile.name} — ${profile.role}`;
 const DESCRIPTION =
-  "Portfolio of Arnav Mangaonkar: an engineer building intelligent systems at the intersection of AI, robotics, computer vision, embedded systems, and industrial automation.";
+  "Portfolio of Your Name: a Pokédex-style interactive résumé covering projects, experience, skills, and ways to get in touch. Replace this description in src/app/layout.tsx.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: TITLE,
-    template: "%s — Arnav Mangaonkar",
+    template: `%s — ${profile.name}`,
   },
   description: DESCRIPTION,
   keywords: [
-    "Arnav Mangaonkar",
-    "AI Engineer",
-    "Robotics Engineer",
-    "Computer Vision",
-    "Embedded Systems",
-    "Industrial Automation",
-    "Edge AI",
-    "Machine Learning Engineer",
-    "ROS2",
+    profile.name,
+    profile.role,
     "Portfolio",
+    "Pokédex",
   ],
-  authors: [{ name: "Arnav Mangaonkar", url: SITE_URL }],
-  creator: "Arnav Mangaonkar",
-  applicationName: "Arnav Mangaonkar Portfolio",
+  authors: [{ name: profile.name, url: SITE_URL }],
+  creator: profile.name,
+  applicationName: `${profile.name} Portfolio`,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: SITE_URL,
     title: TITLE,
     description: DESCRIPTION,
-    siteName: "Arnav Mangaonkar",
+    siteName: profile.name,
   },
   twitter: {
     card: "summary_large_image",
@@ -69,13 +63,13 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
-  // Favicon/app icon comes from src/app/icon.png (+ apple-icon.png) via
+  // Favicon/app icon comes from src/app/icon.svg via
   // Next's file convention — it handles the <link> tags automatically,
   // including basePath, so no manual `icons` entry needed here.
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#150f10",
   colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
@@ -89,7 +83,7 @@ const jsonLd = {
   jobTitle: profile.role,
   email: profile.email,
   address: { "@type": "PostalAddress", addressLocality: profile.location },
-  sameAs: [profile.links.github, profile.links.linkedin, profile.links.instagram],
+  sameAs: [profile.links.github, profile.links.linkedin],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
