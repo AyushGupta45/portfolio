@@ -40,7 +40,7 @@ export function PcPanel() {
                 href={project.github}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="pixel-panel pixel-corners-sm flex items-center justify-between px-4 py-3 transition-colors hover:bg-accent"
+                className="pixel-panel pixel-corners-sm flex min-w-0 items-center justify-between gap-3 px-4 py-3 transition-colors hover:bg-accent"
               >
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold text-foreground">
@@ -56,7 +56,7 @@ export function PcPanel() {
                 />
               </a>
             ) : (
-              <div className="pixel-panel pixel-corners-sm flex items-center justify-between px-4 py-3 opacity-70">
+              <div className="pixel-panel pixel-corners-sm flex min-w-0 items-center justify-between gap-3 px-4 py-3 opacity-70">
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold text-foreground">
                     {project.name}

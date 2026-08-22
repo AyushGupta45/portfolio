@@ -52,9 +52,9 @@ function EducationCard({
         }`}
         style={{ "--lift-accent": latest ? "var(--pixel-yellow)" : "var(--pixel-grass)" } as React.CSSProperties}
       >
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5">
-          <h3 className="text-[10px] leading-snug text-foreground">{entry.degree}</h3>
-          <span className="flex shrink-0 items-center gap-1.5">
+        <div className="flex flex-col items-start gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-3">
+          <h3 className="min-w-0 text-[10px] leading-snug text-foreground">{entry.degree}</h3>
+          <span className="flex min-w-0 flex-wrap items-center gap-1.5">
             {entry.grade && (
               <span className="border-2 border-border px-2 py-0.5 font-pixel text-[8px] text-muted-foreground">
                 {entry.grade}

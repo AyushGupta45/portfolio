@@ -791,7 +791,11 @@ body.theme-pixel * {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  /* minmax(0, 1fr), NOT bare 1fr: a bare 1fr track floors at the pane's
+   * min-content width, so nowrap/truncate panels (e.g. the PC repo list)
+   * blow the device wider than the viewport instead of letting their
+   * truncated lines actually truncate. */
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 10px;
 }
 
@@ -828,7 +832,7 @@ body.theme-pixel * {
     flex: none;
   }
   .bag-shell-body {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .bag-shell-body[data-mobile-view="list"] .bag-shell-content {
     display: none;
@@ -896,6 +900,7 @@ body.theme-pixel * {
    =================================================================== */
 .content-panel-wrap {
   width: 100%;
+  min-width: 0; /* flex item of .bag-shell-content — allow truncation inside */
   min-height: 0;
 }
 .content-panel-wrap .pixel-panel-titlebar {

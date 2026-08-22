@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
 import { GithubIcon, LinkedinIcon } from "@/components/shared/brand-icons";
 import { withBasePath } from "@/lib/base-path";
@@ -23,6 +23,7 @@ export function PokegearPanel() {
           href={`mailto:${profile.email}`}
           className="hover-lift flex h-full flex-col border-2 border-border bg-card p-4"
         >
+          <Mail size={18} className="mb-3 text-amber" />
           <p className="font-pixel text-[8px] uppercase tracking-wide text-muted-foreground">Email</p>
           <p className="mt-1 truncate text-sm font-medium text-foreground">{profile.email}</p>
         </a>
@@ -46,7 +47,7 @@ export function PokegearPanel() {
         >
           <LinkedinIcon size={18} className="mb-3 text-amber" />
           <p className="font-pixel text-[8px] uppercase tracking-wide text-muted-foreground">LinkedIn</p>
-          <p className="mt-1 truncate text-sm font-medium text-foreground">/in/{profile.linkedinHandle}</p>
+          <p className="mt-1 truncate text-sm font-medium text-foreground">/in/ayushgupta</p>
         </a>
 
         <a
