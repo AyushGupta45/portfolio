@@ -7,7 +7,6 @@ import { IntroScreen } from "./intro-screen";
 import { PlayerCard } from "./player-card";
 import { BagNav } from "./bag-nav";
 import { ContentPanel } from "./content-panel";
-import { FirstOpenPopup } from "./first-open-popup";
 import { BootSequence } from "./boot-sequence";
 import { SfxToggle } from "./sfx-toggle";
 import { PixelClock } from "@/components/pixel/pixel-clock";
@@ -179,7 +178,6 @@ function DeviceShell({ booting, finishBoot }: { booting: boolean; finishBoot: ()
   return (
     <div className="bag-shell">
       {booting && <BootSequence onDone={finishBoot} />}
-      <FirstOpenPopup />
 
       <div className="bag-device">
         <DeviceChrome />
