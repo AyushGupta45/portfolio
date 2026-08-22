@@ -24,7 +24,7 @@ export const education: EducationEntry[] = [
     degree: "Maharashtra State Board of Technical Education, Mumbai",
     school: "S.H. Jondhale Polytechnic, Dombivli (W)",
     period: "Sept 2021 — May 2023",
-    grade: "66.7%",
+    grade: "83.6%",
   
   },
   {
