@@ -37,7 +37,7 @@ export const education: EducationEntry[] = [
     coursework: ["Object-Oriented Programming", "Computer Networks", "Software Testing", "Java & C++"],
   },
   {
-    degree: "HSC — Science & Vocational Studies",
+    degree: "HSC — Higher School Certificate",
     school: "Mulund Vidyamandir & Jr. College, Mulund (W)",
     period: "Jun 2018 — Mar 2020",
     grade: "66.7%",

@@ -54,12 +54,12 @@ export function PokegearPanel() {
       </div>
 
       {/* Grid of Consolidated Communications & Links */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 min-w-0">
         {/* Email Copy Action */}
         <button
           type="button"
           onClick={copyEmail}
-          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-5 group transition-colors hover:border-[var(--pixel-red)] text-left w-full"
+          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-4 sm:p-5 group transition-colors hover:border-[var(--pixel-red)] text-left min-w-0"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -84,7 +84,7 @@ export function PokegearPanel() {
           href={profile.links.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-5 group transition-colors hover:border-[var(--pixel-red)]"
+          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-4 sm:p-5 group transition-colors hover:border-[var(--pixel-red)] min-w-0"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -111,7 +111,7 @@ export function PokegearPanel() {
           href={profile.links.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-5 group transition-colors hover:border-[var(--pixel-red)]"
+          className="hover-lift flex flex-col justify-between border-2 border-border bg-card p-4 sm:p-5 group transition-colors hover:border-[var(--pixel-red)] min-w-0"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -134,7 +134,7 @@ export function PokegearPanel() {
         </a>
 
         {/* Resume Items Bag Card */}
-        <div className="border-2 border-[var(--pixel-red)] bg-[var(--pixel-cream-alt)] p-5 flex flex-col justify-between">
+        <div className="border-2 border-[var(--pixel-red)] bg-[var(--pixel-cream-alt)] p-4 sm:p-5 flex flex-col justify-between min-w-0">
           <div>
             <div className="flex items-center justify-between mb-3">
               <span className="flex h-10 w-10 items-center justify-center border-2 border-[var(--pixel-red)] bg-[var(--pixel-yellow)] text-[var(--pixel-ink)]">

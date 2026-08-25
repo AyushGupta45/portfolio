@@ -61,7 +61,7 @@ export function JourneyPanel() {
               }`}
               style={{ "--lift-accent": role.current ? "var(--pixel-yellow)" : "var(--pixel-grass)" } as React.CSSProperties}
             >
-              <div className="flex flex-wrap items-start justify-between gap-2">
+              <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-2">
                 <div>
                   <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
                     {role.role}
@@ -74,7 +74,7 @@ export function JourneyPanel() {
                   </h3>
                   <p className="mt-0.5 text-sm font-medium text-amber">{role.company}</p>
                 </div>
-                <span className="border-2 border-border bg-muted px-2.5 py-1 font-pixel text-[8px] text-muted-foreground">
+                <span className="border-2 border-border bg-muted px-2.5 py-1 font-pixel text-[8px] text-muted-foreground shrink-0">
                   {role.period}
                 </span>
               </div>

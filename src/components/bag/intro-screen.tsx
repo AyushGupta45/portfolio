@@ -120,13 +120,13 @@ export function IntroScreen() {
     <div
       ref={scope}
       data-phase={phase || undefined}
-      className="intro-screen relative min-h-dvh w-full overflow-y-auto flex justify-center items-center select-none py-10 px-4"
+      className="intro-screen relative h-dvh w-full overflow-hidden flex justify-center items-center select-none py-6 px-4 sm:py-10"
     >
-      <div className="z-10 flex flex-col items-center justify-center gap-7 sm:gap-7 py-6 text-center max-w-3xl w-full">
-        {/* Battle Trainer Display with Flanking Pokemon */}
-        <div data-intro-item className="relative flex flex-col items-center gap-2.5 w-full">
-          {/* Pokemon Battle Level / HP HUD */}
-          <div className="pixel-panel pixel-corners border-2 border-border bg-card/90 px-4 py-2 text-left w-full max-w-sm shadow-md">
+      <div className="z-10 flex flex-col items-center justify-center gap-5 sm:gap-7 py-4 sm:py-6 text-center max-w-3xl w-full">
+          {/* Battle Trainer Display with Flanking Pokemon */}
+          <div data-intro-item className="relative flex flex-col items-center gap-2 w-full">
+            {/* Pokemon Battle Level / HP HUD */}
+            <div className="pixel-panel pixel-corners border-2 border-border bg-card/90 px-3 sm:px-4 py-1.5 sm:py-2 text-left w-full max-w-xs sm:max-w-sm shadow-md">
             <div className="flex items-center justify-between font-pixel text-[10px]">
               <span className="font-semibold text-foreground uppercase tracking-wider">
                 {profile.name}
@@ -142,9 +142,9 @@ export function IntroScreen() {
             </div>
           </div>
 
-          <div className="relative flex items-center justify-center gap-8 sm:gap-12  my-6">
+          <div className="relative flex items-center justify-center gap-4 sm:gap-12 my-2 sm:my-6">
             {/* Left Battle Companion: Pikachu */}
-            <div className="hidden sm:block relative h-28 w-28 sm:h-36 sm:w-36 animate-pixel-bob shrink-0">
+            <div className="relative h-16 w-16 sm:h-36 sm:w-36 animate-pixel-bob shrink-0">
               <Image
                 src="/pokemon/pikachu.gif"
                 alt="Pikachu battle companion"
@@ -173,7 +173,7 @@ export function IntroScreen() {
             </div>
 
             {/* Right Battle Companion: Lucario */}
-            <div className="hidden sm:block relative h-28 w-28 sm:h-36 sm:w-36 animate-pixel-bob-delayed shrink-0">
+            <div className="relative h-16 w-16 sm:h-36 sm:w-36 animate-pixel-bob-delayed shrink-0">
               <Image
                 src="/pokemon/lucario.gif"
                 alt="Lucario battle companion"
@@ -185,7 +185,7 @@ export function IntroScreen() {
           </div>
 
           {/* Dialogue Textbox */}
-          <div className="relative mt-1 min-h-5">
+          <div className="relative mt-0 sm:mt-1 min-h-5">
             <p aria-hidden="true" className="invisible font-pixel text-[10px] uppercase tracking-[0.15em] sm:text-xs">
               {ENCOUNTER_LINE}
             </p>
@@ -209,7 +209,7 @@ export function IntroScreen() {
         </div>
 
         {/* Type Badges */}
-        <div data-intro-item className="flex max-w-xl flex-wrap items-center justify-center gap-2 sm:gap-2.5 py-2 my-1">
+        <div data-intro-item className="flex max-w-xl flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 py-1 sm:py-2 my-0 sm:my-1">
           {domains.map((domain) => (
             <TypeBadge key={domain} category={domain} />
           ))}
@@ -217,34 +217,34 @@ export function IntroScreen() {
 
         {/* Battle Command Menu Buttons */}
         <div data-intro-item className="flex flex-col items-center gap-2 w-full">
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 font-pixel text-[10px] w-full">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 font-pixel text-[10px] w-full">
             <button
               type="button"
               onClick={openBag}
-              className="group pixel-btn flex w-44 sm:w-48 items-center justify-center gap-2 bg-[var(--dex-red)] border-2 border-red-700 px-4 py-3 text-white font-bold hover:bg-red-600 hover:scale-105 transition-all shadow-md"
+              className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 bg-[var(--dex-red)] border-2 border-red-700 px-3 sm:px-4 py-2.5 sm:py-3 text-white font-bold hover:bg-red-600 hover:scale-105 transition-all shadow-md"
             >
               <BookOpen size={14} className="shrink-0 text-white" />
-              <span>OPEN POKÉDEX</span>
+              <span className="text-[9px] sm:text-[10px]">OPEN POKÉDEX</span>
             </button>
             <button
               type="button"
               onClick={openProjects}
-              className="group pixel-btn flex w-44 sm:w-48 items-center justify-center gap-2 border-2 border-amber-500 bg-amber-500/20 px-4 py-3 text-amber-300 font-bold hover:bg-amber-500 hover:text-black hover:scale-105 transition-all shadow-md"
+              className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 border-2 border-amber-500 bg-amber-500/20 px-3 sm:px-4 py-2.5 sm:py-3 text-amber-300 font-bold hover:bg-amber-500 hover:text-black hover:scale-105 transition-all shadow-md"
             >
               <Swords size={14} className="shrink-0 text-amber-400 group-hover:text-black transition-colors" />
-              <span>PROJECTDEX</span>
+              <span className="text-[9px] sm:text-[10px]">PROJECTDEX</span>
             </button>
             <button
               type="button"
               onClick={openSkills}
-              className="group pixel-btn flex w-44 sm:w-48 items-center justify-center gap-2 border-2 border-emerald-500 bg-emerald-500/20 px-4 py-3 text-emerald-300 font-bold hover:bg-emerald-500 hover:text-black hover:scale-105 transition-all shadow-md"
+              className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 border-2 border-emerald-500 bg-emerald-500/20 px-3 sm:px-4 py-2.5 sm:py-3 text-emerald-300 font-bold hover:bg-emerald-500 hover:text-black hover:scale-105 transition-all shadow-md"
             >
               <Zap size={14} className="shrink-0 text-emerald-400 group-hover:text-black transition-colors" />
-              <span>MOVESET</span>
+              <span className="text-[9px] sm:text-[10px]">MOVESET</span>
             </button>
           </div>
 
-          <p className="flex items-center mt-4 gap-1.5 font-pixel text-[9px] uppercase tracking-wide text-muted-foreground">
+          <p className="flex items-center mt-2 sm:mt-4 gap-1.5 font-pixel text-[9px] uppercase tracking-wide text-muted-foreground">
             press enter to continue
             <span className="animate-blink" aria-hidden="true">
               <ChevronDown size={24} />

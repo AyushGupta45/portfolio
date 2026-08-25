@@ -82,7 +82,7 @@ function EducationCard({
         style={{ "--lift-accent": latest ? "var(--pixel-yellow)" : "var(--pixel-grass)" } as React.CSSProperties}
       >
         {/* Title + Period Row (matches experience layout) */}
-        <div className="flex flex-wrap items-start justify-between gap-2">
+        <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-2">
           <div className="min-w-0">
             <h3 className="text-base font-semibold text-foreground leading-snug">
               {entry.degree}
