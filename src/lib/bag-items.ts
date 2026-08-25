@@ -1,6 +1,5 @@
 import {
   Bot,
-  FileText,
   GraduationCap,
   MessageCircle,
   Sparkles,
@@ -8,20 +7,16 @@ import {
   Swords,
   type LucideIcon,
 } from "lucide-react";
-import { profile } from "@/data/profile";
-import { GithubIcon, LinkedinIcon } from "@/components/shared/brand-icons";
+import { GithubIcon } from "@/components/shared/brand-icons";
 
 type IconComponent = LucideIcon | typeof GithubIcon;
 
 export type BagItemId =
   | "about"
-  | "education"
   | "experience"
+  | "education"
   | "projects"
   | "skills"
-  | "github"
-  | "linkedin"
-  | "resume"
   | "contact";
 
 interface BagItem {
@@ -47,20 +42,20 @@ const ALL_BAG_ITEMS: BagItem[] = [
     icon: Sprout,
   },
   {
-    id: "education",
-    label: "Education",
-    metaphor: "Trainer School",
-    accent: "oklch(48% 0.13 155)",
-    accentIsLight: false,
-    icon: GraduationCap,
-  },
-  {
     id: "experience",
     label: "Experience",
     metaphor: "Trainer Journey",
     accent: "oklch(48% 0.18 300)",
     accentIsLight: false,
     icon: Swords,
+  },
+  {
+    id: "education",
+    label: "Education",
+    metaphor: "Trainer School",
+    accent: "oklch(48% 0.13 155)",
+    accentIsLight: false,
+    icon: GraduationCap,
   },
   {
     id: "projects",
@@ -79,33 +74,9 @@ const ALL_BAG_ITEMS: BagItem[] = [
     icon: Sparkles,
   },
   {
-    id: "github",
-    label: "GitHub",
-    metaphor: profile.pcName,
-    accent: "oklch(35% 0.03 280)",
-    accentIsLight: false,
-    icon: GithubIcon,
-  },
-  {
-    id: "linkedin",
-    label: "LinkedIn",
-    metaphor: "Trainer ID",
-    accent: "oklch(55% 0.16 250)",
-    accentIsLight: false,
-    icon: LinkedinIcon,
-  },
-  {
-    id: "resume",
-    label: "Resume",
-    metaphor: "Documents",
-    accent: "oklch(45% 0.14 280)",
-    accentIsLight: false,
-    icon: FileText,
-  },
-  {
     id: "contact",
     label: "Contact",
-    metaphor: "Pokégear",
+    metaphor: "Pokégear & Trainer Card",
     accent: "oklch(52% 0.17 25)",
     accentIsLight: false,
     icon: MessageCircle,

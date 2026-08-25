@@ -11,6 +11,7 @@ import { BootSequence } from "./boot-sequence";
 import { SfxToggle } from "./sfx-toggle";
 import { PixelClock } from "@/components/pixel/pixel-clock";
 import { DexCritter } from "@/components/pixel/dex-critter";
+import { PartyBar } from "./party-bar";
 import { profile } from "@/data/profile";
 import { sfx } from "@/lib/sfx";
 
@@ -181,7 +182,7 @@ function DeviceShell({ booting, finishBoot }: { booting: boolean; finishBoot: ()
 
       <div className="bag-device">
         <DeviceChrome />
-        <header className="bag-shell-header font-pixel">
+        <header className="bag-shell-header font-pixel relative z-100!">
           <span className="dex-lens" aria-hidden="true">
             <DexCritter className="lens-critter" />
             <i className="lens-glare" />
@@ -192,6 +193,7 @@ function DeviceShell({ booting, finishBoot }: { booting: boolean; finishBoot: ()
             <i className="dex-led dex-led-green" />
           </span>
           <span className="min-w-0 flex-1 truncate">{profile.bagTitle}</span>
+          <PartyBar className="shrink-0 hidden md:flex" />
           <PixelClock />
           <SfxToggle />
           <BackButton />

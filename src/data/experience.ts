@@ -18,7 +18,7 @@ export const experience: ExperienceEntry[] = [
     companyUrl: "https://www.tcs.com",
     period: "Jun 2026 — Present",
     current: true,
-    domain: "TCS Digital · Enterprise-Scale Projects",
+    domain: "Enterprise-Scale Projects",
     points: [
       "Joined the Digital track, applying full-stack skills to enterprise-scale projects.",
       "Deepening expertise in full-stack architecture, agentic AI systems and scalable backend design.",

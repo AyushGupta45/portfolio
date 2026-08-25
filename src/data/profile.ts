@@ -10,8 +10,8 @@ export const profile = {
   firstName: "Ayush",
   initials: "AG",
   role: "Full-Stack Developer | Systems Engineer @ TCS",
-  positioning: "Full-stack developer building AI-powered & automation-driven web applications.",
-  heroHeadline: "Building end-to-end systems where web dev meets agentic AI.", // REPLACE: your own words
+  positioning: "Building end-to-end systems where web dev meets agentic AI.",
+  heroHeadline: "AI-powered & automation-driven web applications.", // REPLACE: your own words
   location: "Mumbai, Maharashtra, India",
   status: "Systems Engineer @ TCS Digital",
 

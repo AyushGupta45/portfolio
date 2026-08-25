@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Sparkles } from "lucide-react";
 
 const SEQUENCE = [
   "ArrowUp",
@@ -48,7 +49,10 @@ export function KonamiEasterEgg() {
       className="pixel-panel pixel-corners animate-fade-up fixed bottom-5 left-1/2 -translate-x-1/2 px-5 py-3 font-pixel text-[11px]"
       style={{ zIndex: 400 }}
     >
-      <p className="text-[var(--pixel-ink)]">a shiny developer appeared! ✦</p>
+      <p className="text-[var(--pixel-ink)] flex items-center gap-1.5">
+        a shiny developer appeared!
+        <Sparkles size={12} className="shrink-0" />
+      </p>
     </div>
   );
 }

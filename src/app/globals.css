@@ -346,12 +346,15 @@ h6 {
 .type-badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.35em;
-  padding: 3px 8px;
-  font-weight: 600;
+  padding: 5px 10px;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   border: 2px solid var(--pixel-ink);
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.4);
 }
 .type-fire {
   background: var(--pixel-red);
@@ -381,6 +384,30 @@ h6 {
   background: var(--dex-blue);
   color: oklch(96% 0.01 90);
 }
+.type-normal {
+  background: oklch(72% 0.015 85);
+  color: var(--pixel-ink);
+}
+.type-flying {
+  background: oklch(60% 0.10 280);
+  color: oklch(96% 0.01 90);
+}
+.type-dark {
+  background: oklch(28% 0.04 260);
+  color: oklch(93% 0.01 90);
+}
+.type-ghost {
+  background: oklch(50% 0.10 300);
+  color: oklch(96% 0.01 90);
+}
+.type-poison {
+  background: oklch(52% 0.12 310);
+  color: oklch(96% 0.01 90);
+}
+.type-fighting {
+  background: oklch(55% 0.14 30);
+  color: oklch(96% 0.01 90);
+}
 
 /* ===================================================================
    PIXEL PANEL — the game-screen "window" every section's content sits
@@ -401,7 +428,7 @@ h6 {
   --popover: var(--pixel-cream-alt);
   --popover-foreground: var(--pixel-ink);
   --foreground: var(--pixel-ink);
-  --muted-foreground: var(--pixel-ink-dim);
+  --muted-foreground: oklch(35% 0.03 55);
   --muted: color-mix(in oklch, var(--pixel-cream) 85%, var(--pixel-brown) 15%);
   --border: color-mix(in oklch, var(--pixel-brown) 55%, var(--pixel-cream) 45%);
   --secondary: var(--pixel-cream-alt);
@@ -499,11 +526,18 @@ body.theme-pixel .pixel-panel.pixel-corners a:hover {
 body.theme-pixel code,
 body.theme-pixel .pixel-tag {
   font-family: var(--font-pixel), var(--font-mono), ui-monospace, monospace;
-  font-size: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
   background: var(--muted);
   border: 2px solid var(--border);
-  color: var(--dex-blue-dark);
-  padding: 3px 7px;
+  color: var(--foreground);
+  padding: 4px 8px;
+  transition: all 0.15s ease-in-out;
+}
+body.theme-pixel .pixel-tag:hover {
+  border-color: var(--amber);
+  color: var(--amber);
 }
 
 body.theme-pixel {
@@ -818,6 +852,7 @@ body.theme-pixel * {
 .bag-shell-content {
   min-height: 0;
   display: flex;
+
 }
 .bag-shell-content .pixel-panel {
   width: 100%;
