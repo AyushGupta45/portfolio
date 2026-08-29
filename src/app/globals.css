@@ -540,6 +540,28 @@ body.theme-pixel .pixel-tag:hover {
   color: var(--amber);
 }
 
+/* Compact tech-stack tag — smaller font/padding and hard wrap so longish
+ * names (POSTGRESQL, TYPESCRIPT) never clip on narrow mobile screens. */
+.pixel-tag-sm {
+  font-family: var(--font-pixel), var(--font-mono), ui-monospace, monospace;
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  background: var(--muted);
+  border: 1.5px solid var(--border);
+  color: var(--foreground);
+  padding: 2px 6px;
+  line-height: 1.35;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  transition: all 0.15s ease-in-out;
+}
+.pixel-tag-sm:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
 body.theme-pixel {
   background: var(--background);
   color: var(--foreground);
@@ -859,20 +881,13 @@ body.theme-pixel * {
 }
 
 @media (max-width: 860px) {
-  .bag-shell {
-    height: auto;
-    min-height: 100dvh;
-  }
-  .bag-device {
-    flex: none;
-  }
   .bag-shell-body {
     grid-template-columns: minmax(0, 1fr);
   }
   .bag-shell-body[data-mobile-view="list"] .bag-shell-content {
     display: none;
   }
-  .bag-shell-body[data-mobile-view="content"] .bag-shell-nav {
+  .bag-shell-body[data-mobile-view="content"] .bag-shell-left {
     display: none;
   }
   .dex-lens {
@@ -937,6 +952,8 @@ body.theme-pixel * {
   width: 100%;
   min-width: 0; /* flex item of .bag-shell-content — allow truncation inside */
   min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 .content-panel-wrap .pixel-panel-titlebar {
   background: var(--bag-accent, var(--dex-blue-dark));

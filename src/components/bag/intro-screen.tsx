@@ -106,21 +106,21 @@ export function IntroScreen() {
     { scope }
   );
 
-  const openSkills = () => {
-    openBag();
-    setActiveId("skills");
-  };
+  // const openSkills = () => {
+  //   openBag();
+  //   setActiveId("skills");
+  // };
 
-  const openProjects = () => {
-    openBag();
-    setActiveId("projects");
-  };
+  // const openProjects = () => {
+  //   openBag();
+  //   setActiveId("projects");
+  // };
 
   return (
     <div
       ref={scope}
       data-phase={phase || undefined}
-      className="intro-screen relative h-dvh w-full overflow-hidden flex justify-center items-center select-none py-6 px-4 sm:py-10"
+      className="intro-screen relative min-h-dvh w-full overflow-y-auto flex justify-center items-center select-none py-6 px-4 sm:py-10"
     >
       <div className="z-10 flex flex-col items-center justify-center gap-5 sm:gap-7 py-4 sm:py-6 text-center max-w-3xl w-full">
           {/* Battle Trainer Display with Flanking Pokemon */}
@@ -221,12 +221,12 @@ export function IntroScreen() {
             <button
               type="button"
               onClick={openBag}
-              className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 bg-[var(--dex-red)] border-2 border-red-700 px-3 sm:px-4 py-2.5 sm:py-3 text-white font-bold hover:bg-red-600 hover:scale-105 transition-all shadow-md"
+              className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 bg-(--dex-red) border-2 border-red-700 px-3 sm:px-4 py-2.5 sm:py-3 text-white font-bold hover:bg-red-600 hover:scale-105 transition-all shadow-md"
             >
               <BookOpen size={14} className="shrink-0 text-white" />
               <span className="text-[9px] sm:text-[10px]">OPEN POKÉDEX</span>
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={openProjects}
               className="group pixel-btn flex w-36 sm:w-48 items-center justify-center gap-2 border-2 border-amber-500 bg-amber-500/20 px-3 sm:px-4 py-2.5 sm:py-3 text-amber-300 font-bold hover:bg-amber-500 hover:text-black hover:scale-105 transition-all shadow-md"
@@ -241,7 +241,7 @@ export function IntroScreen() {
             >
               <Zap size={14} className="shrink-0 text-emerald-400 group-hover:text-black transition-colors" />
               <span className="text-[9px] sm:text-[10px]">MOVESET</span>
-            </button>
+            </button> */}
           </div>
 
           <p className="flex items-center mt-2 sm:mt-4 gap-1.5 font-pixel text-[9px] uppercase tracking-wide text-muted-foreground">

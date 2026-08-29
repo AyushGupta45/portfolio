@@ -87,11 +87,11 @@ function EducationCard({
             <h3 className="text-base font-semibold text-foreground leading-snug">
               {entry.degree}
             </h3>
-            <p className="mt-0.5 text-sm font-medium text-[var(--pixel-red)]">{entry.school}</p>
+            {/* <p className="mt-0.5 text-sm font-medium text-[var(--pixel-red)]">{entry.school}</p> */}
           </div>
           <div className="flex flex-wrap items-center gap-2 shrink-0">
             {entry.grade && (
-              <span className="border-2 border-[var(--pixel-red)] bg-[var(--pixel-cream-alt)] px-2 py-0.5 font-pixel text-[8px] font-bold text-[var(--pixel-red)]">
+              <span className="border-2 border-(--pixel-red) bg-(--pixel-cream-alt) px-2 py-0.5 font-pixel text-[8px] font-bold text-[var(--pixel-red)]">
                 GRADE: {entry.grade}
               </span>
             )}

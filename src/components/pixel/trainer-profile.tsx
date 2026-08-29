@@ -1,13 +1,26 @@
 "use client";
 
-import { Bug, Coffee, Footprints, Sparkles, Star, Zap } from "lucide-react";
+import { Bug, Coffee, Footprints, Star, Zap } from "lucide-react";
 import {
+  siAngular,
+  siBetterauth,
+  siDrizzle,
+  siExpress,
+  siGit,
+  siMongodb,
+  siMysql,
   siNextdotjs,
   siNodedotjs,
   siPostgresql,
+  siPrisma,
   siPython,
   siReact,
+  siShadcnui,
+  siSpringboot,
+  siTailwindcss,
   siTypescript,
+  siVercel,
+  siXyflow,
 } from "simple-icons";
 import { profile } from "@/data/profile";
 import { PixelAvatar, useTrainerDialogue } from "./pixel-avatar";
@@ -18,9 +31,22 @@ const TOP_SKILLS = [
   { icon: siTypescript, name: "TypeScript" },
   { icon: siReact, name: "React" },
   { icon: siNextdotjs, name: "Next.js" },
+  { icon: siAngular, name: "Angular" },
   { icon: siNodedotjs, name: "Node.js" },
-  { icon: siPostgresql, name: "PostgreSQL" },
+  { icon: siSpringboot, name: "Spring Boot" },
   { icon: siPython, name: "Python" },
+  { icon: siShadcnui, name: "Shadcn/UI" },
+  { icon: siTailwindcss, name: "Tailwind CSS" },
+  { icon: siPrisma, name: "Prisma" },
+  { icon: siDrizzle, name: "Drizzle" },
+  { icon: siPostgresql, name: "PostgreSQL" },
+  { icon: siMysql, name: "SQLite" },
+  { icon: siMongodb, name: "MongoDB" },
+  { icon: siExpress, name: "Express" },
+  { icon: siGit, name: "Git" },
+  { icon: siXyflow, name: "xyflow" },
+  { icon: siBetterauth, name: "BetterAuth" },
+  { icon: siVercel, name: "Vercel" }
 ];
 
 const hometown = profile.location.split(",")[0].trim();
@@ -91,17 +117,18 @@ export function TrainerProfile() {
             {/* Tech Badges */}
             <div className="border-2 border-border bg-card p-3 sm:p-4">
               <span className="font-pixel text-[8px] uppercase text-(--pixel-red) font-bold block mb-2 tracking-wider">
-                MASTER TECH STACK BADGES (6/6)
+                MASTER TECH STACK BADGES ({TOP_SKILLS.length})
               </span>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="flex sm:flex-wrap items-center gap-3 overflow-x-auto pb-2 sm:pb-0 sm:justify-center">
                 {TOP_SKILLS.map((skill) => (
                   <div
                     key={skill.name}
-                    title={skill.name}
-                    className="flex items-center gap-2 border-2 border-border bg-(--pixel-cream) px-2.5 py-1.5 text-[10px] font-bold font-pixel text-foreground shadow-sm hover:border-amber-600 hover:bg-amber-50/50 transition-all cursor-default"
+                    className="group relative flex shrink-0 p-2 items-center justify-center border-2 border-border bg-(--pixel-cream) shadow-sm hover:border-amber-600 hover:bg-amber-50/50 transition-all cursor-default"
                   >
-                    <TechIcon icon={skill.icon} size={20} />
-                    <span className="truncate">{skill.name}</span>
+                    <TechIcon icon={skill.icon} size={36} />
+                    <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white text-[9px] font-pixel px-2 py-1 whitespace-nowrap z-50 shadow-md border border-white/20">
+                      {skill.name}
+                    </span>
                   </div>
                 ))}
               </div>

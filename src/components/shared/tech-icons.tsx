@@ -20,9 +20,16 @@ export function TechIcon({
       className={className}
       role="img"
       aria-label={icon.title}
+      style={{ filter: "drop-shadow(0 0 0.5px rgba(15, 23, 42, 0.8))" }}
     >
       <title>{icon.title}</title>
-      <path fill={`#${icon.hex}`} d={icon.path} />
+      <path
+        fill={`#${icon.hex}`}
+        stroke="rgba(15, 23, 42, 0.75)"
+        strokeWidth={0.7}
+        paintOrder="stroke fill"
+        d={icon.path}
+      />
     </svg>
   );
 }

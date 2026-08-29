@@ -47,9 +47,35 @@ export function BagProvider({ children }: { children: ReactNode }) {
   const [activeId, setActiveIdState] = useState<BagItemId>(BAG_ITEMS[0].id);
   const [mobileView, setMobileView] = useState<MobileView>("list");
 
+  useEffect(() => {
+    const syncStateFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (!hash) {
+        setBagOpen(false);
+      } else if (hash === "menu") {
+        setBagOpen(true);
+        setMobileView("list");
+      } else {
+        const baseHash = hash.split("/")[0];
+        const item = BAG_ITEMS.find((i) => i.id === baseHash);
+        if (item) {
+          setBagOpen(true);
+          setActiveIdState(item.id as BagItemId);
+          setMobileView("content");
+        } else {
+          setBagOpen(true);
+          setMobileView("list");
+        }
+      }
+    };
+    
+    syncStateFromHash();
+    window.addEventListener("hashchange", syncStateFromHash);
+    return () => window.removeEventListener("hashchange", syncStateFromHash);
+  }, []);
+
   const setActiveId = useCallback((id: BagItemId) => {
-    setActiveIdState(id);
-    setMobileView("content");
+    window.location.hash = id;
     sfx.select();
   }, []);
 
@@ -63,21 +89,23 @@ export function BagProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const confirmSelection = useCallback(() => {
-    setMobileView("content");
+    window.location.hash = activeId;
     sfx.select();
-  }, []);
+  }, [activeId]);
 
   const backOut = useCallback(() => {
-    if (mobileView === "content") {
-      setMobileView("list");
+    const hash = window.location.hash;
+    if (hash && hash !== "#" && hash !== "#menu") {
+      window.location.hash = "menu";
     } else {
+      window.history.pushState(null, "", window.location.pathname);
       setBagOpen(false);
     }
     sfx.back();
-  }, [mobileView]);
+  }, []);
 
   const goBackToList = useCallback(() => {
-    setMobileView("list");
+    window.location.hash = "menu";
     sfx.back();
   }, []);
 
@@ -89,6 +117,7 @@ export function BagProvider({ children }: { children: ReactNode }) {
   const openBag = useCallback(() => {
     setBagOpen(true);
     if (!hasBooted) setBooting(true);
+    window.location.hash = "menu";
     sfx.select();
   }, [hasBooted]);
 

@@ -6,7 +6,7 @@
 
 export interface EducationEntry {
   degree: string;
-  school: string;
+  // school: string;
   period: string;
   grade?: string;
   highlights?: string[];
@@ -16,7 +16,7 @@ export interface EducationEntry {
 export const education: EducationEntry[] = [
   {
     degree: "B.E. in AI & Data Science",
-    school: "Vasantdada Patil Pratishthan's College of Engineering",
+    // school: "Vasantdada Patil Pratishthan's College of Engineering",
     period: "Sept 2023 — May 2026",
     grade: "8.4 CGPA",
     highlights: [
@@ -27,7 +27,7 @@ export const education: EducationEntry[] = [
   },
   {
     degree: "Diploma in Computer Engineering",
-    school: "S.H. Jondhale Polytechnic, Dombivli (W)",
+    // school: "S.H. Jondhale Polytechnic, Dombivli (W)",
     period: "Sept 2021 — May 2023",
     grade: "83.6%",
     highlights: [
@@ -38,7 +38,7 @@ export const education: EducationEntry[] = [
   },
   {
     degree: "HSC — Higher School Certificate",
-    school: "Mulund Vidyamandir & Jr. College, Mulund (W)",
+    // school: "Mulund Vidyamandir & Jr. College, Mulund (W)",
     period: "Jun 2018 — Mar 2020",
     grade: "66.7%",
     highlights: [
@@ -48,7 +48,7 @@ export const education: EducationEntry[] = [
   },
   {
     degree: "SSC — Secondary School Certificate",
-    school: "St. Xavier's High School & Junior College, Bhandup (W)",
+    // school: "St. Xavier's High School & Junior College, Bhandup (W)",
     period: "Jun 2016 — Mar 2018",
     grade: "86%",
     highlights: [

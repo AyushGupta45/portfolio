@@ -70,7 +70,7 @@ export function ProjectThumbnail({
         <p className="text-amber/90 font-bold font-mono">{"// "}{project.name}</p>
         <p className="truncate text-emerald-300/80">&gt; {project.tagline}</p>
         <div className="mt-1 flex flex-wrap gap-1">
-          {project.tech.slice(0, 3).map((t) => (
+          {project.tech.slice(0, 6).map((t) => (
             <span
               key={t}
               className="border border-emerald-800/80 bg-emerald-950/40 px-1 py-0.2 text-[7px] text-emerald-300"

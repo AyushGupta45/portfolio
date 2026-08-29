@@ -31,7 +31,7 @@ export function ContentPanel({ className }: { className?: string }) {
       className={`content-panel-wrap ${mobileView === "content" ? "is-mobile-content" : ""} ${className ?? ""}`}
       style={{ "--bag-accent": item.accent } as React.CSSProperties}
     >
-      <PixelPanel title={item.metaphor.toUpperCase()} className="flex h-full flex-col">
+      <PixelPanel title={item.metaphor.toUpperCase()} className="flex flex-1 min-h-0 flex-col">
         <button type="button" onClick={goBackToList} className="bag-back-btn font-pixel">
           <ChevronLeft size={13} />
           back

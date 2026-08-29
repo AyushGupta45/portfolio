@@ -6,7 +6,7 @@ import { ArrowLeft, ArrowRight, ExternalLink, Play, Search } from "lucide-react"
 import { projects, type Project } from "@/data/projects";
 import { TypeBadge } from "@/components/pixel/type-badge";
 import { ProjectThumbnail } from "@/components/pixel/project-thumbnail";
-import { StatBar } from "@/components/shared/stat-bar";
+import { HexagonStats } from "@/components/shared/hexagon-stats";
 import { cn } from "@/lib/utils";
 
 const STATUS_STYLE: Record<Project["status"], string> = {
@@ -16,32 +16,6 @@ const STATUS_STYLE: Record<Project["status"], string> = {
 };
 
 const dexProjects = projects.filter((p) => p.showInDex !== false);
-
-function deriveStats(project: Project) {
-  const clamp = (n: number) => Math.min(100, n);
-  return [
-    {
-      label: "depth",
-      value: clamp(30 + project.achievements.length * 15),
-      hint: "achievements listed",
-    },
-    {
-      label: "stack",
-      value: clamp(25 + project.tech.length * 9),
-      hint: "tech in the stack",
-    },
-    {
-      label: "reach",
-      value: clamp(34 + project.categories.length * 22),
-      hint: "domains it touches",
-    },
-    {
-      label: "status",
-      value: project.status === "Active" ? 92 : project.status === "Published" ? 80 : 70,
-      hint: project.status.toLowerCase(),
-    },
-  ];
-}
 
 function useOdometer(value: number, duration = 420): number {
   const [display, setDisplay] = useState(value);
@@ -76,6 +50,21 @@ function OdometerNumber({ value }: { value: number }) {
 
 export function PokedexPanel() {
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      const parts = hash.split("/");
+      if (parts[0] === "projects" && parts[1]) {
+        setSelectedSlug(parts[1]);
+      } else {
+        setSelectedSlug(null);
+      }
+    };
+    handleHash();
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
   const [query, setQuery] = useState("");
 
   const filtered = useMemo(() => {
@@ -145,17 +134,27 @@ export function PokedexPanel() {
           {/* Back Button */}
           <button
             type="button"
-            onClick={() => setSelectedSlug(null)}
+            onClick={() => { window.location.hash = "projects"; }}
             className="pixel-btn flex items-center gap-2 bg-muted px-4 py-2 font-pixel text-[8px] uppercase text-foreground hover:bg-accent"
           >
             <ArrowLeft size={13} />
-            BACK TO PROJECTS GRID
+            BACK TO PROJECTS
           </button>
 
           {/* Banner Screenshot Preview */}
-          <div className="relative group">
-            <ProjectThumbnail project={selected} aspectRatio="banner" className="w-full" />
-            <div className="absolute top-2 right-2 flex gap-1.5">
+          <div className="relative group overflow-hidden cursor-default">
+            {selected.demo ? (
+              <a href={selected.demo} target="_blank" rel="noopener noreferrer" className="block sm:pointer-events-none cursor-pointer sm:cursor-default">
+                <ProjectThumbnail project={selected} aspectRatio="banner" className="w-full" />
+              </a>
+            ) : selected.github ? (
+              <a href={selected.github} target="_blank" rel="noopener noreferrer" className="block sm:pointer-events-none cursor-pointer sm:cursor-default">
+                <ProjectThumbnail project={selected} aspectRatio="banner" className="w-full" />
+              </a>
+            ) : (
+              <ProjectThumbnail project={selected} aspectRatio="banner" className="w-full" />
+            )}
+            <div className="absolute top-2 right-2 flex gap-1.5 z-10 transition-opacity group-hover:opacity-0">
               <span
                 className={cn(
                   "border-2 px-2.5 py-0.5 font-pixel text-[8px] font-bold shadow-md",
@@ -164,6 +163,32 @@ export function PokedexPanel() {
               >
                 {selected.status}
               </span>
+            </div>
+            
+            {/* Hover Link Overlay (Hidden on Mobile) */}
+            <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:flex items-center justify-center gap-4 z-20">
+              {selected.demo && (
+                <a
+                  href={selected.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-btn flex items-center gap-2 bg-emerald-500 px-4 py-2.5 font-pixel text-[8px] text-black font-bold hover:bg-emerald-400"
+                >
+                  <Play size={12} fill="currentColor" />
+                  PLAY / LIVE DEMO
+                </a>
+              )}
+              {selected.github && (
+                <a
+                  href={selected.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pixel-btn flex items-center gap-2 bg-primary px-4 py-2.5 font-pixel text-[8px] text-primary-foreground hover:bg-primary/90"
+                >
+                  VIEW SOURCE
+                  <ExternalLink size={12} />
+                </a>
+              )}
             </div>
           </div>
 
@@ -194,14 +219,12 @@ export function PokedexPanel() {
             )}
           </div>
 
-          {/* Derived Stat Bars */}
-          <div className="border-2 border-border bg-black/20 p-4 space-y-2">
-            <p className="font-pixel text-[8px] uppercase tracking-wide text-amber mb-2">
-              POWER SPECS & STATS
+          {/* Base-Stat Hexagram */}
+          <div className="border-2 border-border bg-black/20 p-4">
+            <p className="font-pixel text-[8px] uppercase tracking-wide text-amber mb-3">
+              BASE STAT HEXAGRAM
             </p>
-            {deriveStats(selected).map((s) => (
-              <StatBar key={s.label} {...s} />
-            ))}
+            <HexagonStats project={selected} />
           </div>
 
           {/* Field Notes / Achievements */}
@@ -226,13 +249,12 @@ export function PokedexPanel() {
             </p>
             <div className="flex flex-wrap gap-1.5">
               {selected.tech.map((t) => (
-                <span key={t} className="pixel-tag">
+                <span key={t} className="pixel-tag pixel-tag-sm">
                   {t}
                 </span>
               ))}
             </div>
           </div>
-
           {/* Links Footer: Optional Live Demo & GitHub */}
           <div className="flex flex-wrap items-center justify-end gap-3 border-t border-border pt-4">
             {selected.demo && (
@@ -251,13 +273,14 @@ export function PokedexPanel() {
                 href={selected.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="pixel-btn flex items-center gap-2 bg-primary px-4 py-2.5 font-pixel text-[8px] text-primary-foreground"
+                className="pixel-btn flex items-center gap-2 bg-primary px-4 py-2.5 font-pixel text-[8px] text-primary-foreground hover:bg-primary/90"
               >
                 VIEW SOURCE ON GITHUB
                 <ExternalLink size={12} />
               </a>
             )}
           </div>
+
         </div>
       ) : (
         /* GRID VIEW (6 Cards) */
@@ -269,7 +292,7 @@ export function PokedexPanel() {
                 return (
                   <div
                     key={project.slug}
-                    onClick={() => setSelectedSlug(project.slug)}
+                    onClick={() => { window.location.hash = `projects/${project.slug}`; }}
                     className="hover-lift group cursor-pointer border-2 border-border bg-card p-3 flex flex-col justify-between transition-transform duration-300 hover:scale-[1.03] hover:border-amber"
                   >
                     <div>

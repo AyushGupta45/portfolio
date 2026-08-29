@@ -9,27 +9,27 @@ interface SkillCategory {
 export const skills: SkillCategory[] = [
   {
     category: "Languages",
-    skills: ["JavaScript", "TypeScript", "Python", "SQL", "Kotlin"],
+    skills: ["JavaScript", "TypeScript", "Python", "Java"],
   },
   {
     category: "Frontend",
-    skills: ["React.js", "Next.js", "Tailwind CSS", "ShadCN UI", "ReactFlow", "Redux Toolkit", "Recharts"],
+    skills: ["React.js", "Next.js", "Angular", "Tailwind CSS", "ShadCN UI", "ReactFlow", "Recharts", "Framer Motion", "GSAP", "Three.js"],
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Express.js", "tRPC", "REST APIs", "Better Auth", "JWT"],
+    skills: ["Node.js", "Express.js", "Spring Boot", "tRPC", "REST APIs", "Better Auth", "JWT"],
   },
   {
     category: "Databases",
-    skills: ["PostgreSQL", "MongoDB", "Drizzle ORM", "Mongoose", "Cloudinary"],
+    skills: ["MySQL", "PostgreSQL", "MongoDB", "Drizzle ORM", "Prisma", "NeonDb"],
   },
   {
     category: "AI & ML",
-    skills: ["LLM Integration", "Agentic Workflows", "Multi-Agent Systems", "Groq API", "Puppeteer", "Cheerio"],
+    skills: ["Agentic AI", "Agentic Workflows", "RAG", "LangChain", "Multi-Agent Systems", "Puppeteer", "Cheerio"],
   },
   {
     category: "Tools",
-    skills: ["Git & GitHub", "Postman", "Vercel", "Zod", "Nodemailer"],
+    skills: ["Git & GitHub", "Postman", "Vercel", "Zod", "AWS","Docker", "Figma"],
   },
 ];
 
