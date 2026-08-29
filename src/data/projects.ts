@@ -273,6 +273,7 @@ export const projects: Project[] = [
       "strict MVC separation — controllers, models, routes, middleware",
     ],
     github: "https://github.com/AyushGupta45/wanderlust",
+    image: "projects/wanderlust.png",
     period: "Jan 2024",
     status: "Shipped",
   },

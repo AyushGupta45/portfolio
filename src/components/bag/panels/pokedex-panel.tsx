@@ -293,7 +293,7 @@ export function PokedexPanel() {
                   <div
                     key={project.slug}
                     onClick={() => { window.location.hash = `projects/${project.slug}`; }}
-                    className="hover-lift group cursor-pointer border-2 border-border bg-card p-3 flex flex-col justify-between transition-transform duration-300 hover:scale-[1.03] hover:border-amber"
+                    className="hover-lift group cursor-pointer border-2 border-border bg-card p-3 flex flex-col justify-between min-w-0 transition-transform duration-300 hover:scale-[1.03] hover:border-amber"
                   >
                     <div>
                       {/* Project Screenshot / Dynamic Mockup */}
