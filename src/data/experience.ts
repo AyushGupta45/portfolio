@@ -20,7 +20,7 @@ export const experience: ExperienceEntry[] = [
     current: true,
     domain: "Enterprise-Scale Projects",
     points: [
-      "Joined the Digital track, applying full-stack skills to enterprise-scale projects.",
+      "Joined TCS, now applying full-stack skills to enterprise-scale projects.",
       "Deepening expertise in full-stack architecture, agentic AI systems and scalable backend design.",
       "Still building independently — see the Projectdex for open-source work.",
     ],
