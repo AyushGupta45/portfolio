@@ -100,12 +100,12 @@ export function PokedexPanel() {
             />
           </div>
           <div>
-            <h3 className="font-pixel text-[10px] uppercase text-foreground">
-              Projectdex — Legendary Encounters ({dexProjects.length})
-            </h3>
-            <p className="text-xs text-muted-foreground">
-              Production web apps, AI multi-agent platforms, & visual workflow builders.
-            </p>
+          <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-foreground">
+            Projectdex — Pokémon-style Project Catalogue
+          </h3>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Browse trainer&apos;s quest logs, view field data, and access live deployments or source code.
+          </p>
           </div>
         </div>
 

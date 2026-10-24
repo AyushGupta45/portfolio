@@ -20,10 +20,10 @@ export function JourneyPanel() {
             />
           </div>
           <div>
-            <h3 className="font-pixel text-[10px] uppercase text-foreground">
+            <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-foreground">
               Trainer Journey & League Battles
             </h3>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Milestone achievements, enterprise engineering, & production deployments.
             </p>
           </div>
@@ -79,7 +79,7 @@ export function JourneyPanel() {
                 </span>
               </div>
 
-              <p className="mt-1 font-pixel text-[8px] uppercase tracking-wide text-muted-foreground">
+              <p className="mt-1 font-pixel text-[8px] uppercase tracking-[0.12em] text-muted-foreground">
                 DOMAIN: {role.domain}
               </p>
 

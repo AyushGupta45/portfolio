@@ -193,7 +193,7 @@ function DeviceShell({ booting, finishBoot }: { booting: boolean; finishBoot: ()
             <i className="dex-led dex-led-green" />
           </span>
           <span className="min-w-0 flex-1 truncate">{profile.bagTitle}</span>
-          <PartyBar className="shrink-0 hidden md:flex" />
+          <PartyBar className="shrink-0 hidden lg:flex" />
           <PixelClock />
           <SfxToggle />
           <BackButton />

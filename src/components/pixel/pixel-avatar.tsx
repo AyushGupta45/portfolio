@@ -122,13 +122,13 @@ export function PixelAvatar({
       </button>
 
       <div
-        className="pixel-panel pixel-corners-sm flex min-h-10 max-w-[220px] items-center px-3 py-2 text-center text-xs"
+        className="pixel-panel pixel-corners-sm flex min-h-12 max-w-[240px] items-center px-3 py-2 text-center"
         aria-live="polite"
       >
-        <p className="text-[var(--pixel-ink)]">
+        <p className="text-[var(--pixel-ink)] text-sm leading-snug font-medium">
           {typedLine}
           <span className="animate-blink" aria-hidden="true">
-            ▼
+            ▸
           </span>
         </p>
       </div>

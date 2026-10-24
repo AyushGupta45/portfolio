@@ -64,10 +64,10 @@ export function MovesetPanel() {
             />
           </div>
           <div>
-            <h3 className="font-pixel text-[10px] uppercase text-foreground">
+            <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-foreground">
               Trainer Moveset & Technical Type Matchups
             </h3>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Battle-tested skills categorized by technical domain & power proficiency.
             </p>
           </div>

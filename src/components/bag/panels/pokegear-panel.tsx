@@ -32,10 +32,10 @@ export function PokegearPanel() {
             />
           </div>
           <div>
-            <h3 className="font-pixel text-[10px] uppercase text-foreground">
+            <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-foreground">
               Pokégear Transmitters & Trainer ID Cards
             </h3>
-            <p className="text-xs font-medium text-muted-foreground">
+            <p className="text-xs font-medium text-muted-foreground leading-relaxed">
               Direct signal line, professional networks, PC repository box, & resume items.
             </p>
           </div>
@@ -68,7 +68,7 @@ export function PokegearPanel() {
               </span>
               <span className="font-pixel text-[8px] font-bold text-[var(--pixel-red)] uppercase">TRANSMITTER</span>
             </div>
-            <p className="font-pixel text-[8px] uppercase tracking-wide text-foreground font-bold">
+            <p className="font-pixel text-[8px] uppercase tracking-[0.12em] text-foreground font-bold">
               DIRECT EMAIL
             </p>
             <p className="mt-1 truncate text-sm font-semibold text-foreground">{profile.email}</p>
@@ -93,7 +93,7 @@ export function PokegearPanel() {
               </span>
               <span className="font-pixel text-[8px] font-bold text-[var(--pixel-ink)] uppercase">TRAINER ID</span>
             </div>
-            <p className="font-pixel text-[8px] uppercase tracking-wide text-foreground font-bold">
+            <p className="font-pixel text-[8px] uppercase tracking-[0.12em] text-foreground font-bold">
               LINKEDIN NETWORK
             </p>
             <p className="mt-1 truncate text-sm font-semibold text-foreground">
@@ -120,7 +120,7 @@ export function PokegearPanel() {
               </span>
               <span className="font-pixel text-[8px] font-bold text-[var(--pixel-ink)] uppercase">PC STORAGE</span>
             </div>
-            <p className="font-pixel text-[8px] uppercase tracking-wide text-foreground font-bold">
+            <p className="font-pixel text-[8px] uppercase tracking-[0.12em] text-foreground font-bold">
               GITHUB CODEVAULT ({profile.stats[1].value} REPOS)
             </p>
             <p className="mt-1 truncate text-sm font-semibold text-foreground">
@@ -142,7 +142,7 @@ export function PokegearPanel() {
               </span>
               <span className="font-pixel text-[8px] font-bold text-[var(--pixel-red)] uppercase">ITEM BAG</span>
             </div>
-            <p className="font-pixel text-[8px] uppercase tracking-wide text-foreground font-bold">
+            <p className="font-pixel text-[8px] uppercase tracking-[0.12em] text-foreground font-bold">
               LATEST RESUME (PDF)
             </p>
             <p className="mt-1 truncate text-sm font-semibold text-foreground">

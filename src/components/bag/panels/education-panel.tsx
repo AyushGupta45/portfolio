@@ -22,10 +22,10 @@ export function EducationPanel() {
             />
           </div>
           <div>
-            <h3 className="font-pixel text-[10px] uppercase text-foreground font-bold">
+            <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-foreground font-bold">
               Trainer School & Academic Foundation
             </h3>
-            <p className="text-xs text-muted-foreground font-medium">
+            <p className="text-xs text-muted-foreground font-medium leading-relaxed">
               Formal education, specializations, academic honors, & learned technical moves.
             </p>
           </div>
@@ -83,22 +83,25 @@ function EducationCard({
       >
         {/* Title + Period Row (matches experience layout) */}
         <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-start sm:justify-between gap-2">
-          <div className="min-w-0">
-            <h3 className="text-base font-semibold text-foreground leading-snug">
+          <div>
+            <h3 className="text-sm sm:text-base font-semibold text-foreground flex items-center gap-2 leading-tight">
               {entry.degree}
             </h3>
-            {/* <p className="mt-0.5 text-sm font-medium text-[var(--pixel-red)]">{entry.school}</p> */}
+            <p className="mt-0.5 text-sm font-medium text-[var(--pixel-red)]">{entry.school}</p>
+            {entry.grade && (() => {
+              const g = entry.grade.trim();
+              const isPercent = /%/.test(g);
+              const label = isPercent ? "PERCENTAGE" : "CGPA";
+              return (
+                <p className="mt-2 font-pixel text-xs uppercase tracking-[0.14em] text-foreground/90">
+                  {label}: <span className="font-bold text-[var(--pixel-forest)]">{g.replace(/\bCGPA\b/i, "").replace(/\bPercentage\b/i, "").trim()}</span>
+                </p>
+              );
+            })()}
           </div>
-          <div className="flex flex-wrap items-center gap-2 shrink-0">
-            {entry.grade && (
-              <span className="border-2 border-(--pixel-red) bg-(--pixel-cream-alt) px-2 py-0.5 font-pixel text-[8px] font-bold text-[var(--pixel-red)]">
-                GRADE: {entry.grade}
-              </span>
-            )}
-            <span className="border-2 border-border bg-muted px-2.5 py-0.5 font-pixel text-[8px] text-muted-foreground">
-              {entry.period}
-            </span>
-          </div>
+          <span className="border-2 border-border bg-muted px-2.5 py-0.5 font-pixel text-[8px] text-muted-foreground shrink-0">
+            {entry.period}
+          </span>
         </div>
 
         {/* Highlights / Bullet Points Box */}

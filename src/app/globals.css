@@ -21,7 +21,9 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-pixel: var(--font-press-start);
-  --font-heading: var(--font-sans);
+  --font-pixel-alt: var(--font-vt323);
+  --font-heading: var(--font-pixel);
+  --font-body: var(--font-sans);
 
   --color-amber: var(--amber);
   --color-amber-dim: var(--amber-dim);
@@ -174,7 +176,7 @@
   /* named palette — the Pokédex hardware colours */
   --dex-red: oklch(57% 0.21 26);
   --dex-red-dark: oklch(45% 0.185 26);
-  --dex-red-deep: oklch(33% 0.14 24);
+  --dex-red-deep: oklch(32% 0.138 24);
   --dex-blue: oklch(52% 0.125 250);
   --dex-blue-dark: oklch(36% 0.11 252);
   --dex-blue-light: oklch(68% 0.115 242);
@@ -258,6 +260,17 @@
   .font-pixel {
     letter-spacing: 0.02em;
   }
+  .font-pixel-alt {
+    font-family: var(--font-pixel-alt), var(--font-mono), ui-monospace, monospace;
+    letter-spacing: 0.01em;
+  }
+  .text-readable {
+    text-wrap: pretty;
+    hyphens: none;
+  }
+  .text-narrow {
+    max-width: 65ch;
+  }
 }
 
 /* Headings + nav speak the Pokédex font; body copy stays Geist for
@@ -269,7 +282,7 @@ h4,
 h5,
 h6 {
   font-family: var(--font-pixel), var(--font-mono), ui-monospace, monospace;
-  line-height: 1.5;
+  line-height: 1.7;
   letter-spacing: 0;
 }
 

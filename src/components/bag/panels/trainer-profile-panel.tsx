@@ -14,11 +14,11 @@ export function TrainerProfilePanel() {
 
       {/* 2. Trainer Lore & Background Section */}
       <div className="border-2 border-border bg-card p-5 space-y-4 shadow-sm">
-        <h3 className="font-pixel text-[10px] uppercase text-[var(--pixel-red)] font-bold">
+        <h3 className="font-pixel text-[9px] uppercase tracking-[0.14em] text-[var(--pixel-red)] font-bold">
           Trainer Lore & Background
         </h3>
         {profile.about.map((paragraph, i) => (
-          <p key={i} className="text-sm leading-relaxed text-foreground font-medium">
+          <p key={i} className="text-sm leading-relaxed text-foreground font-medium text-readable">
             {paragraph}
           </p>
         ))}
@@ -26,14 +26,14 @@ export function TrainerProfilePanel() {
 
       {/* 3. Dream Team Party Showcase Card */}
       <div className="border-2 border-border bg-card p-4 sm:p-5 shadow-sm">
-        <div className="flex items-center justify-between border-b border-border pb-3 mb-4">
-          <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-amber animate-pulse" />
-            <h3 className="font-pixel text-[9px] sm:text-xs uppercase text-foreground font-bold">
+        <div className="flex items-center justify-between border-b border-border pb-3 mb-4 gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="h-2.5 w-2.5 rounded-full bg-amber animate-pulse shrink-0" />
+            <h3 className="font-pixel text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-foreground font-bold truncate">
               Trainer Dream Team Party (6/6)
             </h3>
           </div>
-          <span className="font-pixel text-[8px] text-(--pixel-forest) font-bold">
+          <span className="font-pixel text-[7px] sm:text-[8px] text-(--pixel-forest) font-bold tracking-[0.12em] text-right">
             STATUS: ALL HEALED & READY
           </span>
         </div>
